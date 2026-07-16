@@ -1,0 +1,7 @@
+# Runtime dependencies for the Model Drift Watchdog.
+anthropic>=0.40
+google-generativeai>=0.8
+openai>=1.40
+jsonschema>=4.20
+requests>=2.31
+PyYAML>=6.0
