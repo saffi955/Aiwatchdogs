@@ -1,118 +1,42 @@
 {
-  "generated_at": "2026-07-17T19:13:12+00:00",
+  "generated_at": "2026-07-17T14:06:36+00:00",
   "models": {
-    "claude-haiku-4-5 (alias)": [
+    "gemini-flash-lite (alias)": [
       {
-        "run_at": "2026-07-17T08:12:47+00:00",
-        "drift_score": 0.0,
-        "scores": {},
+        "run_at": "2026-07-17T14:03:05+00:00",
+        "drift_score": 96.0,
+        "scores": {
+          "format_compliance": 100.0,
+          "instruction_following": 100.0,
+          "classification_stability": 80.0,
+          "math_reasoning": 100.0,
+          "extraction_accuracy": 100.0,
+          "refusal_boundary": 100.0,
+          "verbosity_fingerprint": 80.0,
+          "edge_case_handling": 100.0
+        },
         "verbosity_z": 0.0,
-        "latency_ms_avg": 0.0,
-        "alerted": false,
-        "calibrating": true
-      },
-      {
-        "run_at": "2026-07-17T13:42:07+00:00",
-        "drift_score": 0.0,
-        "scores": {},
-        "verbosity_z": 0.0,
-        "latency_ms_avg": 0.0,
-        "alerted": false,
-        "calibrating": true
-      },
-      {
-        "run_at": "2026-07-17T19:13:12+00:00",
-        "drift_score": 0.0,
-        "scores": {},
-        "verbosity_z": 0.0,
-        "latency_ms_avg": 0.0,
+        "latency_ms_avg": 1375.4,
         "alerted": false,
         "calibrating": true
       }
     ],
-    "claude-haiku-4-5 (snapshot 2025-10-01)": [
+    "gemini-3.1-flash-lite (version)": [
       {
-        "run_at": "2026-07-17T08:12:47+00:00",
-        "drift_score": 0.0,
-        "scores": {},
+        "run_at": "2026-07-17T14:03:05+00:00",
+        "drift_score": 96.0,
+        "scores": {
+          "format_compliance": 100.0,
+          "instruction_following": 100.0,
+          "classification_stability": 80.0,
+          "math_reasoning": 100.0,
+          "extraction_accuracy": 100.0,
+          "refusal_boundary": 100.0,
+          "verbosity_fingerprint": 80.0,
+          "edge_case_handling": 100.0
+        },
         "verbosity_z": 0.0,
-        "latency_ms_avg": 0.0,
-        "alerted": false,
-        "calibrating": true
-      },
-      {
-        "run_at": "2026-07-17T13:42:07+00:00",
-        "drift_score": 0.0,
-        "scores": {},
-        "verbosity_z": 0.0,
-        "latency_ms_avg": 0.0,
-        "alerted": false,
-        "calibrating": true
-      },
-      {
-        "run_at": "2026-07-17T19:13:12+00:00",
-        "drift_score": 0.0,
-        "scores": {},
-        "verbosity_z": 0.0,
-        "latency_ms_avg": 0.0,
-        "alerted": false,
-        "calibrating": true
-      }
-    ],
-    "claude-sonnet-5": [
-      {
-        "run_at": "2026-07-17T08:12:47+00:00",
-        "drift_score": 0.0,
-        "scores": {},
-        "verbosity_z": 0.0,
-        "latency_ms_avg": 0.0,
-        "alerted": false,
-        "calibrating": true
-      },
-      {
-        "run_at": "2026-07-17T13:42:07+00:00",
-        "drift_score": 0.0,
-        "scores": {},
-        "verbosity_z": 0.0,
-        "latency_ms_avg": 0.0,
-        "alerted": false,
-        "calibrating": true
-      },
-      {
-        "run_at": "2026-07-17T19:13:12+00:00",
-        "drift_score": 0.0,
-        "scores": {},
-        "verbosity_z": 0.0,
-        "latency_ms_avg": 0.0,
-        "alerted": false,
-        "calibrating": true
-      }
-    ],
-    "gemini-flash": [
-      {
-        "run_at": "2026-07-17T08:12:47+00:00",
-        "drift_score": 0.0,
-        "scores": {},
-        "verbosity_z": 0.0,
-        "latency_ms_avg": 0.0,
-        "alerted": false,
-        "calibrating": true
-      },
-      {
-        "run_at": "2026-07-17T13:42:07+00:00",
-        "drift_score": 0.0,
-        "scores": {},
-        "verbosity_z": 0.0,
-        "latency_ms_avg": 0.0,
-        "alerted": false,
-        "calibrating": true
-      },
-      {
-        "run_at": "2026-07-17T19:13:12+00:00",
-        "drift_score": 0.0,
-        "scores": {},
-        "verbosity_z": 0.0,
-        "latency_ms_avg": 0.0,
+        "latency_ms_avg": 1580.3,
         "alerted": false,
         "calibrating": true
       }

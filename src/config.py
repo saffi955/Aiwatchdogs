@@ -21,7 +21,12 @@ DOCS_HISTORY_PATH = ROOT / "docs" / "history.json"
 
 
 def load_config(path: Path | None = None) -> dict[str, Any]:
-    with open(path or CONFIG_PATH, "r", encoding="utf-8") as fh:
+    # WATCHDOG_CONFIG lets a run point at an alternate config (e.g. a subset of
+    # models) without editing the committed config.yml.
+    if path is None:
+        env_path = os.environ.get("WATCHDOG_CONFIG")
+        path = Path(env_path) if env_path else CONFIG_PATH
+    with open(path, "r", encoding="utf-8") as fh:
         cfg = yaml.safe_load(fh)
     _validate(cfg)
     return cfg

@@ -1,25 +1,25 @@
 # Model Drift Watchdog — configuration
 # Everything the watchdog watches and how it scores drift lives here.
 # Add a model = add a list entry. Add a new provider family = add an adapter in
-# src/providers/ and reference it by `provider:` below. No other code changes.
+# src/providers/ and reference it by `provider:`. No other code changes.
+#
+# `env_key` names the environment variable / GitHub secret holding that
+# provider's API key. Keys are NEVER stored here.
 
 run:
-  system_prompt: "You are a helpful assistant."   # kept neutral so verbosity
-                                                  # tests measure true default
-                                                  # chattiness; determinism
-                                                  # comes from temperature 0.
+  system_prompt: "You are a helpful assistant."   # neutral, so verbosity tests
+                                                  # measure true default
+                                                  # chattiness; determinism comes
+                                                  # from temperature 0.
   temperature: 0
   max_tokens: 512
   timeout_s: 30
   retries: 3            # transport retries; an API error is NOT counted as drift
   retry_backoff_s: 2    # exponential: 2s, 4s, 8s ...
+  request_delay_s: 1.5  # pause between prompts to respect free-tier rate limits
 
 scoring:
-  # Category weights for the composite drift score (must sum to 1.0).
-  # verbosity_fingerprint and edge_case_handling are tracked and can trigger the
-  # "category collapse" alert, but per the blueprint they are handled as
-  # penalties / triggers rather than weighted into the base score.
-  weights:
+  weights:              # composite drift score; must sum to 1.0
     format_compliance: 0.25
     instruction_following: 0.20
     classification_stability: 0.20
@@ -37,51 +37,50 @@ scoring:
 
 alerting:
   discord: true                  # requires DISCORD_WEBHOOK_URL secret
-  # email: false                 # reserved for v2
 
-# Models to watch. `env_key` names the environment variable / GitHub secret that
-# holds the API key for that provider. Watching both a moving alias and its
-# pinned dated snapshot is the "proven silent swap" feature: if the alias drifts
-# but the snapshot doesn't, a provider quietly re-pointed the alias.
+# Models to watch. Watching a moving alias alongside a pinned version is the
+# "proven silent swap" signal: if the alias drifts but the version doesn't, the
+# provider quietly re-pointed the alias.
+#
+# NOTE: only the Gemini models were live-verified in the build environment (its
+# network policy blocks the other hosts). Groq / OpenRouter / GitHub Models run
+# fine on the GitHub Actions runner (open network) once their secrets are set;
+# if a model id is wrong it's recorded as an ERROR (not drift) — a one-line fix.
 models:
-  - name: claude-haiku-4-5 (alias)
-    provider: anthropic
-    model_id: claude-haiku-4-5
-    env_key: ANTHROPIC_API_KEY
-    watch: true
-
-  - name: claude-haiku-4-5 (snapshot 2025-10-01)
-    provider: anthropic
-    model_id: claude-haiku-4-5-20251001
-    env_key: ANTHROPIC_API_KEY
-    watch: true
-
-  - name: claude-sonnet-5
-    provider: anthropic
-    model_id: claude-sonnet-5
-    env_key: ANTHROPIC_API_KEY
-    watch: true
-
-  # Gemini free-tier. Confirm the exact current model IDs in Google AI Studio
-  # (they change; e.g. gemini-2.5-flash / gemini-3.1-pro) before your first run.
-  - name: gemini-flash
+  # --- Google AI Studio (free tier) --------------------------------------
+  - name: gemini-flash-lite (alias)
     provider: gemini
-    model_id: gemini-2.5-flash
+    model_id: gemini-flash-lite-latest
     env_key: GEMINI_API_KEY
     watch: true
 
-  - name: gemini-pro
+  - name: gemini-3.1-flash-lite (version)
     provider: gemini
-    model_id: gemini-2.5-pro
+    model_id: gemini-3.1-flash-lite
     env_key: GEMINI_API_KEY
-    watch: false   # flip to true once you confirm the ID + have quota
+    watch: true
 
-  # --- Template for any future OpenAI-compatible free-tier API -------------
-  # Groq, DeepSeek, OpenRouter, Together, etc. all speak the OpenAI API, so one
-  # adapter covers them. Copy, set base_url + env_key, flip watch: true.
-  # - name: groq-llama-3.3-70b
-  #   provider: openai_compat
-  #   model_id: llama-3.3-70b-versatile
-  #   base_url: https://api.groq.com/openai/v1
-  #   env_key: GROQ_API_KEY
-  #   watch: true
+  # --- Groq (free tier, OpenAI-compatible) -------------------------------
+  - name: groq-llama-3.3-70b
+    provider: openai_compat
+    model_id: llama-3.3-70b-versatile
+    base_url: https://api.groq.com/openai/v1
+    env_key: GROQ_API_KEY
+    watch: true
+
+  # --- OpenRouter (free model, OpenAI-compatible) ------------------------
+  # Confirm the exact free model id at https://openrouter.ai/models?max_price=0
+  - name: openrouter-llama-3.3-70b (free)
+    provider: openai_compat
+    model_id: meta-llama/llama-3.3-70b-instruct:free
+    base_url: https://openrouter.ai/api/v1
+    env_key: OPENROUTER_API_KEY
+    watch: true
+
+  # --- GitHub Models (free preview, OpenAI-compatible) -------------------
+  - name: github-gpt-4o-mini
+    provider: openai_compat
+    model_id: openai/gpt-4o-mini
+    base_url: https://models.github.ai/inference
+    env_key: GITHUB_MODELS_API_KEY
+    watch: true

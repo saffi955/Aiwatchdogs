@@ -18,6 +18,7 @@ What happens each run:
 from __future__ import annotations
 
 import json
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -61,8 +62,12 @@ def run_model(model_cfg: dict, tests: list[dict], run_cfg: dict, run_at: str):
 
     results: list[TestResult] = []
     raw_records: list[dict] = []
+    # Space requests to stay under free-tier per-minute limits (reduces 429s).
+    delay = float(run_cfg.get("request_delay_s", 0))
 
-    for test in tests:
+    for i, test in enumerate(tests):
+        if delay and i:
+            time.sleep(delay)
         pr = provider.generate(system_prompt, test["prompt"])
         if pr.error:
             results.append(
