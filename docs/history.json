@@ -1,0 +1,49 @@
+{
+  "generated_at": "2026-07-17T08:12:47+00:00",
+  "models": {
+    "claude-haiku-4-5 (alias)": [
+      {
+        "run_at": "2026-07-17T08:12:47+00:00",
+        "drift_score": 0.0,
+        "scores": {},
+        "verbosity_z": 0.0,
+        "latency_ms_avg": 0.0,
+        "alerted": false,
+        "calibrating": true
+      }
+    ],
+    "claude-haiku-4-5 (snapshot 2025-10-01)": [
+      {
+        "run_at": "2026-07-17T08:12:47+00:00",
+        "drift_score": 0.0,
+        "scores": {},
+        "verbosity_z": 0.0,
+        "latency_ms_avg": 0.0,
+        "alerted": false,
+        "calibrating": true
+      }
+    ],
+    "claude-sonnet-5": [
+      {
+        "run_at": "2026-07-17T08:12:47+00:00",
+        "drift_score": 0.0,
+        "scores": {},
+        "verbosity_z": 0.0,
+        "latency_ms_avg": 0.0,
+        "alerted": false,
+        "calibrating": true
+      }
+    ],
+    "gemini-flash": [
+      {
+        "run_at": "2026-07-17T08:12:47+00:00",
+        "drift_score": 0.0,
+        "scores": {},
+        "verbosity_z": 0.0,
+        "latency_ms_avg": 0.0,
+        "alerted": false,
+        "calibrating": true
+      }
+    ]
+  }
+}
