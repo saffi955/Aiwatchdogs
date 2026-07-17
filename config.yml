@@ -1,0 +1,87 @@
+# Model Drift Watchdog — configuration
+# Everything the watchdog watches and how it scores drift lives here.
+# Add a model = add a list entry. Add a new provider family = add an adapter in
+# src/providers/ and reference it by `provider:` below. No other code changes.
+
+run:
+  system_prompt: "You are a helpful assistant."   # kept neutral so verbosity
+                                                  # tests measure true default
+                                                  # chattiness; determinism
+                                                  # comes from temperature 0.
+  temperature: 0
+  max_tokens: 512
+  timeout_s: 30
+  retries: 3            # transport retries; an API error is NOT counted as drift
+  retry_backoff_s: 2    # exponential: 2s, 4s, 8s ...
+
+scoring:
+  # Category weights for the composite drift score (must sum to 1.0).
+  # verbosity_fingerprint and edge_case_handling are tracked and can trigger the
+  # "category collapse" alert, but per the blueprint they are handled as
+  # penalties / triggers rather than weighted into the base score.
+  weights:
+    format_compliance: 0.25
+    instruction_following: 0.20
+    classification_stability: 0.20
+    math_reasoning: 0.15
+    extraction_accuracy: 0.10
+    refusal_boundary: 0.10
+  baseline_days: 14              # rolling window for "normal"
+  calibration_days: 3            # first N days: record only, never alert
+  drift_drop_threshold: 15       # alert if score falls this far below baseline
+  category_collapse_threshold: 50  # alert if any single category drops below this
+  consecutive_breaches: 2        # require N breaching runs in a row before alert
+  verbosity_z_threshold: 2.0     # |z| beyond this applies a -5 penalty
+  latency_z_threshold: 2.0       # z beyond this applies a -5 penalty
+  penalty_points: 5
+
+alerting:
+  discord: true                  # requires DISCORD_WEBHOOK_URL secret
+  # email: false                 # reserved for v2
+
+# Models to watch. `env_key` names the environment variable / GitHub secret that
+# holds the API key for that provider. Watching both a moving alias and its
+# pinned dated snapshot is the "proven silent swap" feature: if the alias drifts
+# but the snapshot doesn't, a provider quietly re-pointed the alias.
+models:
+  - name: claude-haiku-4-5 (alias)
+    provider: anthropic
+    model_id: claude-haiku-4-5
+    env_key: ANTHROPIC_API_KEY
+    watch: true
+
+  - name: claude-haiku-4-5 (snapshot 2025-10-01)
+    provider: anthropic
+    model_id: claude-haiku-4-5-20251001
+    env_key: ANTHROPIC_API_KEY
+    watch: true
+
+  - name: claude-sonnet-5
+    provider: anthropic
+    model_id: claude-sonnet-5
+    env_key: ANTHROPIC_API_KEY
+    watch: true
+
+  # Gemini free-tier. Confirm the exact current model IDs in Google AI Studio
+  # (they change; e.g. gemini-2.5-flash / gemini-3.1-pro) before your first run.
+  - name: gemini-flash
+    provider: gemini
+    model_id: gemini-2.5-flash
+    env_key: GEMINI_API_KEY
+    watch: true
+
+  - name: gemini-pro
+    provider: gemini
+    model_id: gemini-2.5-pro
+    env_key: GEMINI_API_KEY
+    watch: false   # flip to true once you confirm the ID + have quota
+
+  # --- Template for any future OpenAI-compatible free-tier API -------------
+  # Groq, DeepSeek, OpenRouter, Together, etc. all speak the OpenAI API, so one
+  # adapter covers them. Copy, set base_url + env_key, flip watch: true.
+  # - name: groq-llama-3.3-70b
+  #   provider: openai_compat
+  #   model_id: llama-3.3-70b-versatile
+  #   base_url: https://api.groq.com/openai/v1
+  #   env_key: GROQ_API_KEY
+  #   watch: true
