@@ -32,7 +32,8 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-          GITHUB_MODELS_API_KEY: ${{ secrets.GITHUB_MODELS_API_KEY }}
+          # GitHub reserves the GITHUB_ prefix for secrets, so this one is named TITHUB_MODELS_API_KEY.
+          TITHUB_MODELS_API_KEY: ${{ secrets.TITHUB_MODELS_API_KEY }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: python -m src.runner
 

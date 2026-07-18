@@ -82,5 +82,5 @@ models:
     provider: openai_compat
     model_id: openai/gpt-4o-mini
     base_url: https://models.github.ai/inference
-    env_key: GITHUB_MODELS_API_KEY
+    env_key: TITHUB_MODELS_API_KEY   # GitHub reserves the GITHUB_ prefix; this secret uses TITHUB_
     watch: true
