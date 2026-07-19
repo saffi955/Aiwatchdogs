@@ -23,7 +23,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from . import config
-from .alerter import send_alert
+from .alerter import send_alert, send_heartbeat
 from .checkers import run_check
 from .providers import build_provider
 from .scorer import TestResult, score_run
@@ -118,6 +118,7 @@ def main() -> int:
     run_at = _now_iso()
 
     exit_code = 0
+    summaries = []  # collected across models for the per-run Discord heartbeat
     for model_cfg in config.watched_models(cfg):
         name = model_cfg["name"]
         model_hist = history["models"].get(name, [])
@@ -132,6 +133,7 @@ def main() -> int:
             results, model_hist, cfg,
             model=name, provider=model_cfg["provider"], run_at=run_at,
         )
+        summaries.append(summary)
         summary_dict = summary.to_dict()
 
         # Per-run detailed artifact.
@@ -160,6 +162,15 @@ def main() -> int:
 
     save_json(config.HISTORY_PATH, history)
     _write_dashboard_history(history)
+
+    # Per-run heartbeat: one Discord message summarizing every model this run.
+    # Wrapped so a webhook/network failure can never fail the watchdog itself.
+    if cfg.get("alerting", {}).get("heartbeat"):
+        try:
+            send_heartbeat(summaries)
+        except Exception as exc:  # noqa: BLE001 - a webhook error must not fail the run
+            print(f"[runner] heartbeat failed: {exc}")
+
     return exit_code
 
 

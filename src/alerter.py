@@ -69,3 +69,53 @@ def send_alert(summary: RunSummary, timeout: int = 15) -> bool:
     resp.raise_for_status()
     print(f"[alerter] sent Discord alert for {summary.model}")
     return True
+
+
+# --- per-run heartbeat -----------------------------------------------------
+# Unlike send_alert (fires only on a gated breach), the heartbeat posts once per
+# run summarizing every watched model. It gives you an always-on "the watchdog
+# ran and here's where each model stands" ping — and, crucially, proves the
+# webhook works even when nothing has drifted.
+def _status_label(summary: RunSummary) -> tuple[str, str]:
+    if summary.alerted:
+        return "🚨", "ALERT"
+    if summary.error_count and not summary.scores:
+        return "⛔", "all calls errored"
+    if summary.calibrating:
+        return "🟡", "calibrating"
+    if summary.breach:
+        return "⚠️", "breach"
+    return "✅", "stable"
+
+
+def build_heartbeat(summaries: list[RunSummary]) -> str:
+    run_at = summaries[0].run_at if summaries else ""
+    lines = [f"**🐕 Model Drift Watchdog — run** `{run_at}`", ""]
+    for s in summaries:
+        emoji, label = _status_label(s)
+        base = f" (baseline {s.baseline_avg})" if s.baseline_avg is not None else ""
+        note = f" · {s.error_count} err" if s.error_count else ""
+        lines.append(
+            f"{emoji} **{s.model}** — drift {s.drift_score}{base} · {label}{note}"
+        )
+    breached = [s for s in summaries if s.breach and not s.calibrating]
+    if breached:
+        lines.append("")
+        lines.append("⚠️ Breaching this run: " + ", ".join(s.model for s in breached))
+    return "\n".join(lines)
+
+
+def send_heartbeat(summaries: list[RunSummary], timeout: int = 15) -> bool:
+    """Post a one-message per-run summary of all models. Returns True if sent."""
+    if not summaries:
+        return False
+    url = _webhook_url()
+    if not url:
+        print("[alerter] DISCORD_WEBHOOK_URL not set; skipping heartbeat")
+        return False
+    content = build_heartbeat(summaries)
+    # Discord hard-caps message content at 2000 chars.
+    resp = requests.post(url, json={"content": content[:1990]}, timeout=timeout)
+    resp.raise_for_status()
+    print(f"[alerter] sent Discord heartbeat ({len(summaries)} models)")
+    return True

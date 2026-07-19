@@ -37,6 +37,10 @@ scoring:
 
 alerting:
   discord: true                  # requires DISCORD_WEBHOOK_URL secret
+  heartbeat: true                # post a per-run summary to Discord EVERY run
+                                 # (all-clear + any drift), not only on breach.
+                                 # A run with no breach still pings, so you always
+                                 # know the watchdog — and the webhook — are alive.
 
 # Models to watch. Watching a moving alias alongside a pinned version is the
 # "proven silent swap" signal: if the alias drifts but the version doesn't, the
@@ -68,11 +72,43 @@ models:
     env_key: GROQ_API_KEY
     watch: true
 
+  # Bigger Groq free-tier models. Groq's free RPM/RPD are generous enough to run
+  # the full suite for several models. ids follow Groq's model catalog; a wrong id
+  # is recorded as an ERROR (never drift) — a one-line fix. No model below is
+  # watched on another provider (no duplicates).
+  - name: groq-kimi-k2
+    provider: openai_compat
+    model_id: moonshotai/kimi-k2-instruct
+    base_url: https://api.groq.com/openai/v1
+    env_key: GROQ_API_KEY
+    watch: true
+
+  - name: groq-deepseek-r1-70b
+    provider: openai_compat
+    model_id: deepseek-r1-distill-llama-70b
+    base_url: https://api.groq.com/openai/v1
+    env_key: GROQ_API_KEY
+    watch: true
+
+  - name: groq-gpt-oss-120b
+    provider: openai_compat
+    model_id: openai/gpt-oss-120b
+    base_url: https://api.groq.com/openai/v1
+    env_key: GROQ_API_KEY
+    watch: true
+
   # --- OpenRouter (free model, OpenAI-compatible) ------------------------
   # Confirm the exact free model id at https://openrouter.ai/models?max_price=0
-  - name: openrouter-llama-3.3-70b (free)
+  # WARNING: OpenRouter's free tier is capped at ~50 requests/DAY per account
+  # (until you add credit), shared across ALL ":free" models. This suite sends
+  # 38 prompts x 4 runs/day = ~152 requests/day, so this row WILL 429 for most of
+  # the day no matter which free model is chosen — those 429s are recorded as
+  # ERROR, never drift. The previous llama-3.3-70b:free row died this way and was
+  # also a duplicate of groq-llama-3.3-70b above. Swapped to a distinct big model.
+  # To make this row reliable: add OpenRouter credit, or set watch:false / drop it.
+  - name: openrouter-qwen3-235b (free)
     provider: openai_compat
-    model_id: meta-llama/llama-3.3-70b-instruct:free
+    model_id: qwen/qwen3-235b-a22b:free
     base_url: https://openrouter.ai/api/v1
     env_key: OPENROUTER_API_KEY
     watch: true
