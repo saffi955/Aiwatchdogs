@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-25T03:09:58+00:00",
+  "generated_at": "2026-07-25T08:30:23+00:00",
   "models": {
     "gemini-flash-lite (alias)": [
       {
@@ -557,6 +557,24 @@
         },
         "verbosity_z": -1.11,
         "latency_ms_avg": 497.4,
+        "alerted": false,
+        "calibrating": false
+      },
+      {
+        "run_at": "2026-07-25T08:08:25+00:00",
+        "drift_score": 96.0,
+        "scores": {
+          "format_compliance": 100.0,
+          "instruction_following": 100.0,
+          "classification_stability": 80.0,
+          "math_reasoning": 100.0,
+          "extraction_accuracy": 100.0,
+          "refusal_boundary": 100.0,
+          "verbosity_fingerprint": 80.0,
+          "edge_case_handling": 100.0
+        },
+        "verbosity_z": -0.23,
+        "latency_ms_avg": 456.1,
         "alerted": false,
         "calibrating": false
       }
@@ -1119,6 +1137,24 @@
         "latency_ms_avg": 602.7,
         "alerted": false,
         "calibrating": false
+      },
+      {
+        "run_at": "2026-07-25T08:08:25+00:00",
+        "drift_score": 96.0,
+        "scores": {
+          "format_compliance": 100.0,
+          "instruction_following": 100.0,
+          "classification_stability": 80.0,
+          "math_reasoning": 100.0,
+          "extraction_accuracy": 100.0,
+          "refusal_boundary": 100.0,
+          "verbosity_fingerprint": 80.0,
+          "edge_case_handling": 100.0
+        },
+        "verbosity_z": 0.0,
+        "latency_ms_avg": 479.2,
+        "alerted": false,
+        "calibrating": false
       }
     ],
     "groq-llama-3.3-70b": [
@@ -1659,6 +1695,24 @@
         },
         "verbosity_z": -2.2,
         "latency_ms_avg": 650.6,
+        "alerted": false,
+        "calibrating": false
+      },
+      {
+        "run_at": "2026-07-25T08:08:25+00:00",
+        "drift_score": 91.5,
+        "scores": {
+          "format_compliance": 100.0,
+          "instruction_following": 100.0,
+          "classification_stability": 100.0,
+          "math_reasoning": 60.0,
+          "extraction_accuracy": 100.0,
+          "refusal_boundary": 75.0,
+          "verbosity_fingerprint": 80.0,
+          "edge_case_handling": 100.0
+        },
+        "verbosity_z": 0.23,
+        "latency_ms_avg": 549.2,
         "alerted": false,
         "calibrating": false
       }
@@ -2268,6 +2322,24 @@
         "latency_ms_avg": 1738.1,
         "alerted": false,
         "calibrating": false
+      },
+      {
+        "run_at": "2026-07-25T08:08:25+00:00",
+        "drift_score": 92.0,
+        "scores": {
+          "format_compliance": 100.0,
+          "instruction_following": 75.0,
+          "classification_stability": 100.0,
+          "math_reasoning": 80.0,
+          "extraction_accuracy": 100.0,
+          "refusal_boundary": 100.0,
+          "verbosity_fingerprint": 80.0,
+          "edge_case_handling": 100.0
+        },
+        "verbosity_z": 0.84,
+        "latency_ms_avg": 1199.1,
+        "alerted": false,
+        "calibrating": false
       }
     ],
     "groq-kimi-k2": [
@@ -2477,6 +2549,15 @@
         "latency_ms_avg": 0.0,
         "alerted": false,
         "calibrating": false
+      },
+      {
+        "run_at": "2026-07-25T08:08:25+00:00",
+        "drift_score": 0.0,
+        "scores": {},
+        "verbosity_z": 0.0,
+        "latency_ms_avg": 0.0,
+        "alerted": false,
+        "calibrating": false
       }
     ],
     "groq-deepseek-r1-70b": [
@@ -2680,6 +2761,15 @@
       },
       {
         "run_at": "2026-07-25T02:47:08+00:00",
+        "drift_score": 0.0,
+        "scores": {},
+        "verbosity_z": 0.0,
+        "latency_ms_avg": 0.0,
+        "alerted": false,
+        "calibrating": false
+      },
+      {
+        "run_at": "2026-07-25T08:08:25+00:00",
         "drift_score": 0.0,
         "scores": {},
         "verbosity_z": 0.0,
@@ -3102,6 +3192,24 @@
         "latency_ms_avg": 414.6,
         "alerted": false,
         "calibrating": false
+      },
+      {
+        "run_at": "2026-07-25T08:08:25+00:00",
+        "drift_score": 100.0,
+        "scores": {
+          "format_compliance": 100.0,
+          "instruction_following": 100.0,
+          "classification_stability": 100.0,
+          "math_reasoning": 100.0,
+          "extraction_accuracy": 100.0,
+          "refusal_boundary": 100.0,
+          "verbosity_fingerprint": 80.0,
+          "edge_case_handling": 100.0
+        },
+        "verbosity_z": 1.17,
+        "latency_ms_avg": 563.4,
+        "alerted": false,
+        "calibrating": false
       }
     ],
     "openrouter-qwen3-235b (free)": [
@@ -3305,6 +3413,15 @@
       },
       {
         "run_at": "2026-07-25T02:47:08+00:00",
+        "drift_score": 0.0,
+        "scores": {},
+        "verbosity_z": 0.0,
+        "latency_ms_avg": 0.0,
+        "alerted": false,
+        "calibrating": false
+      },
+      {
+        "run_at": "2026-07-25T08:08:25+00:00",
         "drift_score": 0.0,
         "scores": {},
         "verbosity_z": 0.0,
