@@ -57,6 +57,7 @@ alerting:
 models:
   # --- Google AI Studio (free tier, GEMINI_API_KEY) ----------------------
   # Free quota is per model, so adding models does not starve the others.
+  # Flash-Lite and Gemma have enough free daily quota for 4 full runs a day.
   - name: gemini-flash-lite (alias)
     provider: gemini
     model_id: gemini-flash-lite-latest
@@ -75,49 +76,17 @@ models:
     env_key: GEMINI_API_KEY
     watch: true
 
-  - name: gemini-flash (alias)
-    provider: gemini
-    model_id: gemini-flash-latest
-    env_key: GEMINI_API_KEY
-    watch: true
-
-  - name: gemini-3-flash (preview)
-    provider: gemini
-    model_id: gemini-3-flash-preview
-    env_key: GEMINI_API_KEY
-    watch: true
-
-  - name: gemini-3.5-flash
-    provider: gemini
-    model_id: gemini-3.5-flash
-    env_key: GEMINI_API_KEY
-    watch: true
-
-  - name: gemini-3.6-flash
-    provider: gemini
-    model_id: gemini-3.6-flash
-    env_key: GEMINI_API_KEY
-    watch: true
-
-  - name: gemini-3.7-flash
-    provider: gemini
-    model_id: gemini-3.7-flash
-    env_key: GEMINI_API_KEY
-    watch: true
-
-  - name: gemini-3.8-flash
-    provider: gemini
-    model_id: gemini-3.8-flash
-    env_key: GEMINI_API_KEY
-    watch: true
-
   - name: gemma-4-26b
     provider: gemini
     model_id: gemma-4-26b-a4b-it
     env_key: GEMINI_API_KEY
     watch: true
 
-  # Not watched: gemini-pro-latest / 3.1-pro (free quota is 0, always 429),
+  # Not watched: the non-lite Flash models (gemini-flash-latest, 3-flash-preview,
+  # 3.5/3.6/3.7/3.8-flash). They answer, but their free quota is only ~20
+  # requests/day per model, less than one 38-prompt suite: a live run on
+  # 2026-09-26 got 0-21 answers each before HTTP 429. They need a paid key.
+  # Also not watched: gemini-pro-latest / 3.1-pro (free quota is 0, always 429),
   # gemini-2.5-* (retired, 404), gemma-4-31b (HTTP 500 on test), previews that
   # duplicate a GA model, and TTS / image / audio / Interactions-API-only models.
 

@@ -56,7 +56,8 @@ class GeminiProvider(Provider):
             cand = candidates[0]
             parts = cand.get("content", {}).get("parts", [])
             if parts:
-                text = "".join(p.get("text", "") for p in parts)
+                # Skip "thought" parts: Gemma 4 returns its reasoning inline.
+                text = "".join(p.get("text", "") for p in parts if not p.get("thought"))
             else:
                 text = f"[NO_OUTPUT:{cand.get('finishReason', 'empty')}]"
 
