@@ -34,9 +34,9 @@ the model behind an alias.
 - **API errors ≠ drift** — failed calls are recorded separately and excluded
   from scoring; if a whole category errors, its weight is renormalized away.
 - **No single-run alerts** — 2 consecutive breaches required.
-- **Alias vs snapshot** — the config watches both `claude-haiku-4-5` (moving
-  alias) and `claude-haiku-4-5-20251001` (pinned snapshot). If the alias
-  drifts while the snapshot doesn't, that *proves* a silent swap.
+- **Alias vs snapshot** — the config watches both `gemini-flash-lite-latest`
+  (moving alias) and `gemini-3.1-flash-lite` (pinned version). If the alias
+  drifts while the version doesn't, that *proves* a silent swap.
 
 ## Test suite
 
@@ -69,22 +69,33 @@ different AI models (the raw sources are the `*.txt` files in the repo root):
 ## Setup
 
 1. **Secrets** — in the repo settings, add GitHub Actions secrets:
-   - `ANTHROPIC_API_KEY` (for the Claude models)
    - `GEMINI_API_KEY` (free tier at [Google AI Studio](https://aistudio.google.com/apikey))
+   - `GROQ_API_KEY` (free tier at [console.groq.com](https://console.groq.com/keys))
+   - `OPENROUTER_API_KEY` (free models at [openrouter.ai](https://openrouter.ai/keys))
+   - `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` (Workers AI, 10,000 free
+     neurons/day; the token needs the "Workers AI: Read" permission)
    - `DISCORD_WEBHOOK_URL` (Server Settings → Integrations → Webhooks)
+
+   Each secret must also be passed to the job in `.github/workflows/watchdog.yml`
+   (the `env:` block of the "Run watchdog" step) and referenced by `env_key:` in
+   `config.yml`. Secret names cannot start with `GITHUB_`.
 
    A model whose key is missing is recorded as errored, not drifted — you can
    add keys incrementally.
 2. **GitHub Pages** — repo Settings → Pages → deploy from branch, folder `/docs`.
 3. **Models** — edit `config.yml`. Adding any OpenAI-compatible free-tier API
    (Groq, DeepSeek, OpenRouter, Together, ...) is a config entry with
-   `provider: openai_compat` + `base_url`; no code changes.
+   `provider: openai_compat` + `base_url`; no code changes. Optional per-model
+   keys: `max_tokens` (overrides the run-wide cap) and `max_runs_per_day`
+   (for providers with a tiny daily free quota, like OpenRouter).
+   To see which models your keys can reach, run the `probe-models` workflow
+   from the Actions tab; it writes `data/probe.json`.
 
 ## Run locally
 
 ```bash
 pip install -r requirements.txt
-export ANTHROPIC_API_KEY=... GEMINI_API_KEY=... DISCORD_WEBHOOK_URL=...
+export GEMINI_API_KEY=... GROQ_API_KEY=... OPENROUTER_API_KEY=... DISCORD_WEBHOOK_URL=...
 python -m src.runner
 ```
 
@@ -106,7 +117,7 @@ src/
   checkers.py              one pure-Python checker per check_type
   scorer.py                rolling baselines, z-scores, drift score, alert gate
   alerter.py               Discord webhook alerts
-  providers/               anthropic / gemini / openai_compat adapters
+  providers/               gemini / openai_compat adapters
 data/results/              one JSON per run per model (committed by the Action)
 data/history.json          full scoring history (committed by the Action)
 docs/                      GitHub Pages dashboard (Chart.js, self-contained)

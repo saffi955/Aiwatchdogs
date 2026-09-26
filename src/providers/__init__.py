@@ -5,12 +5,10 @@ from __future__ import annotations
 from typing import Any
 
 from .base import Provider, ProviderResult
-from .anthropic_provider import AnthropicProvider
 from .gemini_provider import GeminiProvider
 from .openai_compat import OpenAICompatProvider
 
 _REGISTRY = {
-    "anthropic": AnthropicProvider,
     "gemini": GeminiProvider,
     "openai_compat": OpenAICompatProvider,
 }

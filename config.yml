@@ -12,8 +12,11 @@ run:
                                                   # chattiness; determinism comes
                                                   # from temperature 0.
   temperature: 0
-  max_tokens: 512
-  timeout_s: 30
+  max_tokens: 8192      # output cap per reply. High enough that reasoning models
+                        # (gpt-oss, qwen3, gemini 3.x thinking) never get cut off
+                        # mid-answer; normal replies to these prompts use far less.
+                        # A model entry can override it with its own max_tokens.
+  timeout_s: 120        # long replies from reasoning models need more than 30s
   retries: 3            # transport retries; an API error is NOT counted as drift
   retry_backoff_s: 2    # exponential: 2s, 4s, 8s ...
   request_delay_s: 1.5  # pause between prompts to respect free-tier rate limits
@@ -46,12 +49,15 @@ alerting:
 # "proven silent swap" signal: if the alias drifts but the version doesn't, the
 # provider quietly re-pointed the alias.
 #
-# NOTE: only the Gemini models were live-verified in the build environment (its
-# network policy blocks the other hosts). Groq / OpenRouter / GitHub Models run
-# fine on the GitHub Actions runner (open network) once their secrets are set;
-# if a model id is wrong it's recorded as an ERROR (not drift) — a one-line fix.
+# Every model below was live-tested with the repo's keys on 2026-09-26 (see
+# data/probe.json, produced by tools/probe_models.py). No model appears twice:
+# where a model is on several providers it is watched on the one with the most
+# free quota. GitHub Models was retired by GitHub on 2026-07-30 and is gone.
+# A wrong or retired id is recorded as an ERROR (never drift) — a one-line fix.
 models:
-  # --- Google AI Studio (free tier) --------------------------------------
+  # --- Google AI Studio (free tier, GEMINI_API_KEY) ----------------------
+  # Free quota is per model, so adding models does not starve the others.
+  # Flash-Lite and Gemma have enough free daily quota for 4 full runs a day.
   - name: gemini-flash-lite (alias)
     provider: gemini
     model_id: gemini-flash-lite-latest
@@ -64,32 +70,29 @@ models:
     env_key: GEMINI_API_KEY
     watch: true
 
-  # --- Groq (free tier, OpenAI-compatible) -------------------------------
-  - name: groq-llama-3.3-70b
-    provider: openai_compat
-    model_id: llama-3.3-70b-versatile
-    base_url: https://api.groq.com/openai/v1
-    env_key: GROQ_API_KEY
+  - name: gemini-3.5-flash-lite
+    provider: gemini
+    model_id: gemini-3.5-flash-lite
+    env_key: GEMINI_API_KEY
     watch: true
 
-  # Bigger Groq free-tier models. Groq's free RPM/RPD are generous enough to run
-  # the full suite for several models. ids follow Groq's model catalog; a wrong id
-  # is recorded as an ERROR (never drift) — a one-line fix. No model below is
-  # watched on another provider (no duplicates).
-  - name: groq-kimi-k2
-    provider: openai_compat
-    model_id: moonshotai/kimi-k2-instruct
-    base_url: https://api.groq.com/openai/v1
-    env_key: GROQ_API_KEY
+  - name: gemma-4-26b
+    provider: gemini
+    model_id: gemma-4-26b-a4b-it
+    env_key: GEMINI_API_KEY
     watch: true
 
-  - name: groq-deepseek-r1-70b
-    provider: openai_compat
-    model_id: deepseek-r1-distill-llama-70b
-    base_url: https://api.groq.com/openai/v1
-    env_key: GROQ_API_KEY
-    watch: true
+  # Not watched: the non-lite Flash models (gemini-flash-latest, 3-flash-preview,
+  # 3.5/3.6/3.7/3.8-flash). They answer, but their free quota is only ~20
+  # requests/day per model, less than one 38-prompt suite: a live run on
+  # 2026-09-26 got 0-21 answers each before HTTP 429. They need a paid key.
+  # Also not watched: gemini-pro-latest / 3.1-pro (free quota is 0, always 429),
+  # gemini-2.5-* (retired, 404), gemma-4-31b (HTTP 500 on test), previews that
+  # duplicate a GA model, and TTS / image / audio / Interactions-API-only models.
 
+  # --- Groq (free tier, GROQ_API_KEY) ------------------------------------
+  # These are every chat model on Groq's current catalog. The old llama-3.3-70b,
+  # kimi-k2 and deepseek-r1-70b rows were removed from Groq.
   - name: groq-gpt-oss-120b
     provider: openai_compat
     model_id: openai/gpt-oss-120b
@@ -97,26 +100,80 @@ models:
     env_key: GROQ_API_KEY
     watch: true
 
-  # --- OpenRouter (free model, OpenAI-compatible) ------------------------
-  # Confirm the exact free model id at https://openrouter.ai/models?max_price=0
-  # WARNING: OpenRouter's free tier is capped at ~50 requests/DAY per account
-  # (until you add credit), shared across ALL ":free" models. This suite sends
-  # 38 prompts x 4 runs/day = ~152 requests/day, so this row WILL 429 for most of
-  # the day no matter which free model is chosen — those 429s are recorded as
-  # ERROR, never drift. The previous llama-3.3-70b:free row died this way and was
-  # also a duplicate of groq-llama-3.3-70b above. Swapped to a distinct big model.
-  # To make this row reliable: add OpenRouter credit, or set watch:false / drop it.
-  - name: openrouter-qwen3-235b (free)
+  - name: groq-gpt-oss-20b
     provider: openai_compat
-    model_id: qwen/qwen3-235b-a22b:free
-    base_url: https://openrouter.ai/api/v1
-    env_key: OPENROUTER_API_KEY
+    model_id: openai/gpt-oss-20b
+    base_url: https://api.groq.com/openai/v1
+    env_key: GROQ_API_KEY
     watch: true
 
-  # --- GitHub Models (free preview, OpenAI-compatible) -------------------
-  - name: github-gpt-4o-mini
+  - name: groq-qwen3.8-27b
     provider: openai_compat
-    model_id: openai/gpt-4o-mini
-    base_url: https://models.github.ai/inference
-    env_key: TITHUB_MODELS_API_KEY   # GitHub reserves the GITHUB_ prefix; this secret uses TITHUB_
+    model_id: qwen/qwen3.8-27b
+    base_url: https://api.groq.com/openai/v1
+    env_key: GROQ_API_KEY
+    watch: true
+
+  # --- OpenRouter (free models, OPENROUTER_API_KEY) ----------------------
+  # The key is on OpenRouter's free tier: 50 requests/DAY shared across ALL
+  # ":free" models. One full suite is 38 requests, so only ONE model can run,
+  # once a day (max_runs_per_day: 1). With $10+ of OpenRouter credit the cap
+  # becomes 1000/day: then drop max_runs_per_day and add more rows, e.g.
+  # nvidia/nemotron-3-super-120b-a12b:free, poolside/laguna-s-2.1:free,
+  # cohere/north-mini-code:free, liquid/lfm-2.5-2.6b:free (all passed the probe).
+  - name: openrouter-nemotron-3-ultra-550b (free)
+    provider: openai_compat
+    model_id: nvidia/nemotron-3-ultra-550b-a55b:free
+    base_url: https://openrouter.ai/api/v1
+    env_key: OPENROUTER_API_KEY
+    max_runs_per_day: 1
+    watch: true
+
+  # --- Cloudflare Workers AI (free, CLOUDFLARE_API_TOKEN + CLOUDFLARE_ACCOUNT_ID)
+  # Free tier: 10,000 neurons/day (about $0.11). At this suite's size (~70 input
+  # and ~25-100 output tokens per prompt, 152 prompts/day per model) the six
+  # models below use roughly 4,000 neurons/day together. Picked for popularity,
+  # skipping anything already watched elsewhere (gpt-oss, qwen3.8, gemma-4,
+  # nemotron). Not watched: DeepSeek-R1 distill (its long reasoning would eat
+  # the neuron budget), and DeepSeek V4 / Kimi K2 / GLM 5.x (paid only, 403).
+  - name: cloudflare-llama-3.3-70b
+    provider: openai_compat
+    model_id: "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
+    base_url: https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/ai/v1
+    env_key: CLOUDFLARE_API_TOKEN
+    watch: true
+
+  - name: cloudflare-llama-4-scout
+    provider: openai_compat
+    model_id: "@cf/meta/llama-4-scout-17b-16e-instruct"
+    base_url: https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/ai/v1
+    env_key: CLOUDFLARE_API_TOKEN
+    watch: true
+
+  - name: cloudflare-llama-3.1-8b
+    provider: openai_compat
+    model_id: "@cf/meta/llama-3.1-8b-instruct-fp8"
+    base_url: https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/ai/v1
+    env_key: CLOUDFLARE_API_TOKEN
+    watch: true
+
+  - name: cloudflare-mistral-small-3.1-24b
+    provider: openai_compat
+    model_id: "@cf/mistralai/mistral-small-3.1-24b-instruct"
+    base_url: https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/ai/v1
+    env_key: CLOUDFLARE_API_TOKEN
+    watch: true
+
+  - name: cloudflare-glm-4.7-flash
+    provider: openai_compat
+    model_id: "@cf/zai-org/glm-4.7-flash"
+    base_url: https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/ai/v1
+    env_key: CLOUDFLARE_API_TOKEN
+    watch: true
+
+  - name: cloudflare-qwen3-30b
+    provider: openai_compat
+    model_id: "@cf/qwen/qwen3-30b-a3b-fp8"
+    base_url: https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/ai/v1
+    env_key: CLOUDFLARE_API_TOKEN
     watch: true

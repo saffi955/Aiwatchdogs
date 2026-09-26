@@ -1,0 +1,1217 @@
+{
+  "probed_at": "2026-09-26T22:04:04Z",
+  "groq": {
+    "models": [
+      {
+        "id": "allam-2-7b",
+        "owned_by": "SDAIA",
+        "active": true,
+        "context_window": 4096,
+        "max_completion_tokens": 4096,
+        "skipped": true
+      },
+      {
+        "id": "canopylabs/orpheus-arabic-saudi",
+        "owned_by": "Canopy Labs",
+        "active": true,
+        "context_window": 4000,
+        "max_completion_tokens": 50000,
+        "skipped": true
+      },
+      {
+        "id": "canopylabs/orpheus-v1-english",
+        "owned_by": "Canopy Labs",
+        "active": true,
+        "context_window": 4000,
+        "max_completion_tokens": 50000,
+        "skipped": true
+      },
+      {
+        "id": "meta-llama/llama-prompt-guard-2-22m",
+        "owned_by": "Meta",
+        "active": true,
+        "context_window": 512,
+        "max_completion_tokens": 512,
+        "skipped": true
+      },
+      {
+        "id": "meta-llama/llama-prompt-guard-2-86m",
+        "owned_by": "Meta",
+        "active": true,
+        "context_window": 512,
+        "max_completion_tokens": 512,
+        "skipped": true
+      },
+      {
+        "id": "openai/gpt-oss-120b",
+        "owned_by": "OpenAI",
+        "active": true,
+        "context_window": 131072,
+        "max_completion_tokens": 65536,
+        "ok": true,
+        "reply": "OK",
+        "ms": 418
+      },
+      {
+        "id": "openai/gpt-oss-20b",
+        "owned_by": "OpenAI",
+        "active": true,
+        "context_window": 131072,
+        "max_completion_tokens": 65536,
+        "ok": true,
+        "reply": "OK",
+        "ms": 356
+      },
+      {
+        "id": "openai/gpt-oss-safeguard-20b",
+        "owned_by": "OpenAI",
+        "active": true,
+        "context_window": 131072,
+        "max_completion_tokens": 65536,
+        "skipped": true
+      },
+      {
+        "id": "qwen/qwen3.8-27b",
+        "owned_by": "Alibaba Cloud",
+        "active": true,
+        "context_window": 131072,
+        "max_completion_tokens": 16384,
+        "ok": true,
+        "reply": "OK",
+        "ms": 136
+      },
+      {
+        "id": "whisper-large-v3",
+        "owned_by": "OpenAI",
+        "active": true,
+        "context_window": 448,
+        "max_completion_tokens": 448,
+        "skipped": true
+      },
+      {
+        "id": "whisper-large-v3-turbo",
+        "owned_by": "OpenAI",
+        "active": true,
+        "context_window": 448,
+        "max_completion_tokens": 448,
+        "skipped": true
+      }
+    ]
+  },
+  "openrouter": {
+    "key_info": {
+      "label": "sk-or-v1-f01...234",
+      "is_management_key": false,
+      "is_provisioning_key": false,
+      "limit": null,
+      "limit_reset": null,
+      "limit_remaining": null,
+      "include_byok_in_limit": false,
+      "usage": 0,
+      "usage_daily": 0,
+      "usage_weekly": 0,
+      "usage_monthly": 0,
+      "byok_usage": 0,
+      "byok_usage_daily": 0,
+      "byok_usage_weekly": 0,
+      "byok_usage_monthly": 0,
+      "is_free_tier": true,
+      "expires_at": null,
+      "creator_user_id": "user_3GdFrRrjkOu0nJwhmYvXhiLCqB1",
+      "organization_id": null,
+      "workspace_id": "fe6efd03-7542-5dfb-8ddd-9892c8f309b6",
+      "allowed_data_regions": [
+        "global"
+      ],
+      "free_model_daily_requests": {
+        "used": 0,
+        "limit": 50,
+        "remaining": 50
+      },
+      "rate_limit": {
+        "requests": -1,
+        "interval": "10s",
+        "note": "This field is deprecated and safe to ignore."
+      }
+    },
+    "free_models": [
+      {
+        "id": "cohere/north-mini-code:free",
+        "context_length": 256000,
+        "max_completion_tokens": 64000,
+        "ok": true,
+        "reply": "OK",
+        "ms": 497
+      },
+      {
+        "id": "dots-studio/dots-3-note-preview:free",
+        "context_length": 512000,
+        "max_completion_tokens": 460800,
+        "ok": true,
+        "reply": "",
+        "ms": 1500
+      },
+      {
+        "id": "google/gemma-4-26b-a4b-it:free",
+        "context_length": 262144,
+        "max_completion_tokens": 32768,
+        "ok": false,
+        "error": "HTTP 429: {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-26b-a4b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations\",\"provider_name\":\"Google AI Studio\",\"",
+        "ms": 128
+      },
+      {
+        "id": "google/gemma-4-31b-it:free",
+        "context_length": 262144,
+        "max_completion_tokens": 32768,
+        "ok": false,
+        "error": "HTTP 429: {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-31b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations\",\"provider_name\":\"Google AI Studio\",\"is_b",
+        "ms": 124
+      },
+      {
+        "id": "inclusionai/ling-3.0-flash-fin:free",
+        "context_length": 262144,
+        "max_completion_tokens": 32768,
+        "ok": true,
+        "reply": "",
+        "ms": 721
+      },
+      {
+        "id": "inclusionai/ling-3.0-flash-sante:free",
+        "context_length": 262144,
+        "max_completion_tokens": 32768,
+        "ok": true,
+        "reply": "OK",
+        "ms": 939
+      },
+      {
+        "id": "liquid/lfm-2.5-2.6b:free",
+        "context_length": 65536,
+        "max_completion_tokens": 8192,
+        "ok": true,
+        "reply": "OK",
+        "ms": 321
+      },
+      {
+        "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+        "context_length": 256000,
+        "max_completion_tokens": 65536,
+        "ok": true,
+        "reply": "OK",
+        "ms": 507
+      },
+      {
+        "id": "nvidia/nemotron-3-super-120b-a12b:free",
+        "context_length": 262144,
+        "max_completion_tokens": 235929,
+        "ok": true,
+        "reply": "OK",
+        "ms": 748
+      },
+      {
+        "id": "nvidia/nemotron-3-ultra-550b-a55b:free",
+        "context_length": 1000000,
+        "max_completion_tokens": 65536,
+        "ok": true,
+        "reply": "OK",
+        "ms": 588
+      },
+      {
+        "id": "nvidia/nemotron-3.5-content-safety:free",
+        "context_length": 128000,
+        "max_completion_tokens": 8192,
+        "ok": true,
+        "reply": "",
+        "ms": 1023
+      },
+      {
+        "id": "nvidia/nemotron-3.5-lightning:free",
+        "context_length": 1000000,
+        "max_completion_tokens": 65536,
+        "ok": true,
+        "reply": "Here's a thinking process:\n\n1.  **Analyze User Input:** The user says \"Reply wit",
+        "ms": 627
+      },
+      {
+        "id": "poolside/laguna-s-2.1:free",
+        "context_length": 262144,
+        "max_completion_tokens": 32768,
+        "ok": true,
+        "reply": "OK",
+        "ms": 611
+      },
+      {
+        "id": "poolside/laguna-xs-2.1:free",
+        "context_length": 262144,
+        "max_completion_tokens": 32768,
+        "ok": false,
+        "error": "HTTP 429: {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"poolside/laguna-xs-2.1:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations\",\"provider_name\":\"Poolside\",\"is_byok\":fa",
+        "ms": 140
+      },
+      {
+        "id": "qwen/qwen3.8-27b:free",
+        "context_length": 262144,
+        "max_completion_tokens": 235929,
+        "ok": false,
+        "error": "HTTP 429: {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"qwen/qwen3.8-27b:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations\",\"provider_name\":\"ModelRun\",\"is_byok\":false,\"p",
+        "ms": 98
+      },
+      {
+        "id": "thinkingmachines/inkling-small:free",
+        "context_length": 1048576,
+        "max_completion_tokens": 262144,
+        "ok": false,
+        "error": "HTTP 403: {\"error\":{\"message\":\"thinkingmachines/inkling-small:free is only available on agentic harnesses. Try plugging it into a coding agent or productivity app listed on https://openrouter.ai/apps\",\"code\":403,\"metadata\":{\"routing_funnel\":[{\"step\":\"Initial Endpoints\",\"endpoint_count\":1}],\"failed_routing_ste",
+        "ms": 49
+      },
+      {
+        "id": "thinkingmachines/inkling:free",
+        "context_length": 1048576,
+        "max_completion_tokens": 262144,
+        "ok": false,
+        "error": "HTTP 403: {\"error\":{\"message\":\"thinkingmachines/inkling:free is only available on agentic harnesses. Try plugging it into a coding agent or productivity app listed on https://openrouter.ai/apps\",\"code\":403,\"metadata\":{\"routing_funnel\":[{\"step\":\"Initial Endpoints\",\"endpoint_count\":1}],\"failed_routing_step\":\"Ga",
+        "ms": 44
+      }
+    ]
+  },
+  "github_models": {
+    "gpt-4o-mini": {
+      "ok": false,
+      "error": "bad body JSONDecodeError: OK\r\n"
+    }
+  },
+  "gemini": {
+    "models": [
+      {
+        "id": "gemini-2.5-flash",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 404: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs"
+      },
+      {
+        "id": "gemini-2.5-pro",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 404: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/"
+      },
+      {
+        "id": "gemini-2.5-flash-preview-tts",
+        "input_limit": 8192,
+        "output_limit": 16384,
+        "skipped": true
+      },
+      {
+        "id": "gemini-2.5-pro-preview-tts",
+        "input_limit": 8192,
+        "output_limit": 16384,
+        "skipped": true
+      },
+      {
+        "id": "gemma-4-26b-a4b-it",
+        "input_limit": 262144,
+        "output_limit": 32768,
+        "ok": true
+      },
+      {
+        "id": "gemma-4-31b-it",
+        "input_limit": 262144,
+        "output_limit": 32768,
+        "ok": true
+      },
+      {
+        "id": "gemini-flash-latest",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": true
+      },
+      {
+        "id": "gemini-flash-lite-latest",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": true
+      },
+      {
+        "id": "gemini-pro-latest",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
+      },
+      {
+        "id": "gemini-2.5-flash-lite",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 404: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemin"
+      },
+      {
+        "id": "gemini-2.5-flash-image",
+        "input_limit": 32768,
+        "output_limit": 32768,
+        "skipped": true
+      },
+      {
+        "id": "gemini-3-flash-preview",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": true
+      },
+      {
+        "id": "gemini-3.1-pro-preview",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
+      },
+      {
+        "id": "gemini-3.1-pro-preview-customtools",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
+      },
+      {
+        "id": "gemini-3.1-flash-lite-preview",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": true
+      },
+      {
+        "id": "gemini-3.1-flash-lite",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": true
+      },
+      {
+        "id": "gemini-3-pro-image-preview",
+        "input_limit": 131072,
+        "output_limit": 32768,
+        "skipped": true
+      },
+      {
+        "id": "gemini-3-pro-image",
+        "input_limit": 131072,
+        "output_limit": 32768,
+        "skipped": true
+      },
+      {
+        "id": "nano-banana-pro-preview",
+        "input_limit": 131072,
+        "output_limit": 32768,
+        "ok": false,
+        "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
+      },
+      {
+        "id": "gemini-3.1-flash-image-preview",
+        "input_limit": 65536,
+        "output_limit": 65536,
+        "skipped": true
+      },
+      {
+        "id": "gemini-3.1-flash-image",
+        "input_limit": 65536,
+        "output_limit": 65536,
+        "skipped": true
+      },
+      {
+        "id": "gemini-3.1-flash-lite-image",
+        "input_limit": 65536,
+        "output_limit": 65536,
+        "skipped": true
+      },
+      {
+        "id": "gemini-3.5-flash",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": true
+      },
+      {
+        "id": "gemini-3.5-flash-lite",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": true
+      },
+      {
+        "id": "gemini-omni-flash-preview",
+        "input_limit": 131072,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
+      },
+      {
+        "id": "gemini-omni-1.1-flash",
+        "input_limit": 131072,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
+      },
+      {
+        "id": "gemini-3.5-transcribe",
+        "input_limit": 98304,
+        "output_limit": 32768,
+        "ok": true
+      },
+      {
+        "id": "gemini-3.6-flash",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": true
+      },
+      {
+        "id": "gemini-3.7-flash",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": true
+      },
+      {
+        "id": "gemini-3.8-flash",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": true
+      },
+      {
+        "id": "lyria-3-clip-preview",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
+      },
+      {
+        "id": "lyria-3-pro-preview",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
+      },
+      {
+        "id": "lyria-3.5",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
+      },
+      {
+        "id": "gemini-3.1-flash-tts-preview",
+        "input_limit": 8192,
+        "output_limit": 16384,
+        "skipped": true
+      },
+      {
+        "id": "gemini-3.8-flash-tts",
+        "input_limit": 8192,
+        "output_limit": 16384,
+        "skipped": true
+      },
+      {
+        "id": "gemini-3.8-flash-lite-tts",
+        "input_limit": 8192,
+        "output_limit": 16384,
+        "skipped": true
+      },
+      {
+        "id": "gemini-robotics-er-2-preview",
+        "input_limit": 131072,
+        "output_limit": 65536,
+        "skipped": true
+      },
+      {
+        "id": "gemini-2.5-computer-use-preview-10-2025",
+        "input_limit": 131072,
+        "output_limit": 65536,
+        "skipped": true
+      },
+      {
+        "id": "antigravity-preview-05-2026",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 400: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"This model only supports Interactions API.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n"
+      },
+      {
+        "id": "antigravity-preview-09-2026",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 400: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"This model only supports Interactions API.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n"
+      },
+      {
+        "id": "antigravity-preview-latest",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 400: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"This model only supports Interactions API.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n"
+      },
+      {
+        "id": "deep-research-max-preview-04-2026",
+        "input_limit": 131072,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 400: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"This model only supports Interactions API.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n"
+      },
+      {
+        "id": "deep-research-preview-04-2026",
+        "input_limit": 131072,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 400: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"This model only supports Interactions API.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n"
+      },
+      {
+        "id": "deep-research-pro-preview-12-2025",
+        "input_limit": 131072,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 400: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"This model only supports Interactions API.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n"
+      }
+    ]
+  },
+  "cloudflare": {
+    "models": [
+      {
+        "id": "@cf/aisingapore/gemma-sea-lion-v4-27b-it",
+        "context_window": "128000",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.351,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 0.555,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "OK\n",
+        "ms": 315
+      },
+      {
+        "id": "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
+        "context_window": "80000",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.497,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 4.881,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "<think>\nAlright, the user has instructed me to respond with exactly \"OK\" when th",
+        "ms": 3110
+      },
+      {
+        "id": "@cf/deepseek-ai/deepseek-v4-flash-0731",
+        "context_window": "1310720",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.44,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 1.32,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M cached input tokens",
+            "price": 0.014,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": false,
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/deepseek-ai/deepseek-v4-flash-0731 is not available on the Workers Free plan: Model @cf/deepseek-ai/deepseek-v4-flash-0731 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (51e4a",
+        "ms": 95
+      },
+      {
+        "id": "@cf/deepseek-ai/deepseek-v4-pro-0813",
+        "context_window": "1048576",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 1.32,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 3.96,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M cached input tokens",
+            "price": 0.044,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": false,
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/deepseek-ai/deepseek-v4-pro-0813 is not available on the Workers Free plan: Model @cf/deepseek-ai/deepseek-v4-pro-0813 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (704983c6-",
+        "ms": 570
+      },
+      {
+        "id": "@cf/google/gemma-2b-it-lora",
+        "context_window": "8192",
+        "price": null,
+        "beta": "true",
+        "deprecated": null,
+        "ok": true,
+        "reply": "OK, I am ready to assist you with any questions or tasks you may have. How can I",
+        "ms": 2328
+      },
+      {
+        "id": "@cf/google/gemma-4-26b-a4b-it",
+        "context_window": "256000",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.1,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 0.3,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "",
+        "ms": 779
+      },
+      {
+        "id": "@cf/google/gemma-7b-it-lora",
+        "context_window": "3500",
+        "price": null,
+        "beta": "true",
+        "deprecated": null,
+        "ok": true,
+        "reply": "OK\n\nSure, here is your reply:\n\n**OK**\n\nIs there anything else I can help you wit",
+        "ms": 2058
+      },
+      {
+        "id": "@cf/ibm-granite/granite-4.0-h-micro",
+        "context_window": "131000",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.017,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 0.112,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "OK",
+        "ms": 592
+      },
+      {
+        "id": "@cf/meta-llama/llama-2-7b-chat-hf-lora",
+        "context_window": "8192",
+        "price": null,
+        "beta": "true",
+        "deprecated": null,
+        "ok": true,
+        "reply": "",
+        "ms": 4099
+      },
+      {
+        "id": "@cf/meta/llama-3.1-8b-instruct-fp8",
+        "context_window": "32000",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.152,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 0.287,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "OK",
+        "ms": 346
+      },
+      {
+        "id": "@cf/meta/llama-3.2-11b-vision-instruct",
+        "context_window": "128000",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.0485,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 0.676,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": false,
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model Agreement: Prior to using this model, you must submit the prompt 'agree'. By submitting \u2018agree\u2019, you  hereby agree to the llama-3.2-11b-vision-instruct Community License https://github.com/meta-llama/llama-models/blob/main/models/llama3_2/LICENSE and Acceptable ",
+        "ms": 162
+      },
+      {
+        "id": "@cf/meta/llama-3.2-1b-instruct",
+        "context_window": "60000",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.027,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 0.201,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "OK",
+        "ms": 317
+      },
+      {
+        "id": "@cf/meta/llama-3.2-3b-instruct",
+        "context_window": "80000",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.0509,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 0.335,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "OK",
+        "ms": 253
+      },
+      {
+        "id": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+        "context_window": "24000",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.293,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 2.253,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "OK",
+        "ms": 529
+      },
+      {
+        "id": "@cf/meta/llama-4-scout-17b-16e-instruct",
+        "context_window": "131000",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.27,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 0.85,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "OK",
+        "ms": 252
+      },
+      {
+        "id": "@cf/meta/llama-guard-3-8b",
+        "context_window": "131072",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.484,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 0.03,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "skipped": true
+      },
+      {
+        "id": "@cf/mistral/mistral-7b-instruct-v0.2-lora",
+        "context_window": "15000",
+        "price": null,
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": " OK. I'm here to help answer any questions you might have or provide information",
+        "ms": 4246
+      },
+      {
+        "id": "@cf/mistralai/mistral-small-3.1-24b-instruct",
+        "context_window": "128000",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.351,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 0.555,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "OK",
+        "ms": 248
+      },
+      {
+        "id": "@cf/moonshotai/kimi-k2.6",
+        "context_window": "262144",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.95,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 4,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M cached input tokens",
+            "price": 0.16,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": false,
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/moonshotai/kimi-k2.6 is not available on the Workers Free plan: Model @cf/moonshotai/kimi-k2.6 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (f4264777-b19f-4659-8546-4da2fce8e",
+        "ms": 92
+      },
+      {
+        "id": "@cf/moonshotai/kimi-k2.7-code",
+        "context_window": "262144",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.95,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 4,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M cached input tokens",
+            "price": 0.19,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": false,
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/moonshotai/kimi-k2.7-code is not available on the Workers Free plan: Model @cf/moonshotai/kimi-k2.7-code is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (8f3a85c4-48b7-473e-8fab",
+        "ms": 687
+      },
+      {
+        "id": "@cf/nvidia/nemotron-3-120b-a12b",
+        "context_window": "256000",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.5,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 1.5,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "\n\nOK",
+        "ms": 510
+      },
+      {
+        "id": "@cf/openai/gpt-oss-120b",
+        "context_window": "128000",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.35,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 0.75,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "OK",
+        "ms": 1280
+      },
+      {
+        "id": "@cf/openai/gpt-oss-20b",
+        "context_window": "128000",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.2,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 0.3,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "OK",
+        "ms": 429
+      },
+      {
+        "id": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "context_window": "32768",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.66,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 1,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "OK",
+        "ms": 251
+      },
+      {
+        "id": "@cf/qwen/qwen3-30b-a3b-fp8",
+        "context_window": "32768",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.0509,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 0.335,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "",
+        "ms": 403
+      },
+      {
+        "id": "@cf/qwen/qwen3.8-27b",
+        "context_window": "262144",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.45,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 3.2,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M cached input tokens",
+            "price": 0.05,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "\n\nOK",
+        "ms": 722
+      },
+      {
+        "id": "@cf/qwen/qwq-32b",
+        "context_window": "24000",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.66,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 1,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "Okay, the user wants me to reply with exactly \"OK\". Let me make sure I understan",
+        "ms": 1985
+      },
+      {
+        "id": "@cf/zai-org/glm-4.7-flash",
+        "context_window": "131072",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.0605,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 0.4,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "OK",
+        "ms": 526
+      },
+      {
+        "id": "@cf/zai-org/glm-5.2",
+        "context_window": "262144",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 1.4,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 4.4,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M cached input tokens",
+            "price": 0.26,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": false,
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/zai-org/glm-5.2 is not available on the Workers Free plan: Model @cf/zai-org/glm-5.2 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (46aeadb1-dd46-4be5-8319-2316f88c3cf3)\",\"cod",
+        "ms": 81
+      },
+      {
+        "id": "@cf/zai-org/glm-5.3",
+        "context_window": "1310720",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 1.4,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 4.4,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M cached input tokens",
+            "price": 0.26,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": false,
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/zai-org/glm-5.3 is not available on the Workers Free plan: Model @cf/zai-org/glm-5.3 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (252c69fd-a791-4d05-97f6-7860bf52ead8)\",\"cod",
+        "ms": 75
+      },
+      {
+        "id": "@cf/zai-org/glm-5.3-flash",
+        "context_window": "1310720",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.15,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 0.5,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M cached input tokens",
+            "price": 0.03,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": false,
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/zai-org/glm-5.3-flash is not available on the Workers Free plan: Model @cf/zai-org/glm-5.3-flash is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (23ecea64-5cea-49d3-812f-eb9e688",
+        "ms": 75
+      }
+    ]
+  }
+}

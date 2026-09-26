@@ -34,6 +34,9 @@ class Provider:
         self.model_id = model_cfg["model_id"]
         self.env_key = model_cfg["env_key"]
         self.api_key = get_api_key(self.env_key)
+        # Per-model override: reasoning models spend output tokens thinking, so
+        # they need a bigger budget than the run-wide default to finish answering.
+        self.max_tokens = int(model_cfg.get("max_tokens", run_cfg.get("max_tokens", 512)))
 
     # --- to be implemented by subclasses ---------------------------------
     def _generate(self, system_prompt: str, user_prompt: str) -> ProviderResult:

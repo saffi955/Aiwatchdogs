@@ -1,0 +1,45 @@
+name: probe-models
+
+# Manual (or on a claude/** push that edits the probe): lists and test-calls
+# every model the provider keys can reach, then
+# commits data/probe.json. Run it from the Actions tab when choosing models.
+# Probing openrouter spends ~20 of its 50 free requests for that day, so it is
+# left out by default.
+on:
+  push:
+    branches: ["claude/**"]
+    paths: ["tools/probe_models.py"]
+  workflow_dispatch:
+    inputs:
+      providers:
+        description: "Comma-separated: groq,openrouter,gemini,cloudflare (or all)"
+        default: "groq,gemini,cloudflare"
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install requests
+      - name: Probe providers
+        env:
+          PROBE_PROVIDERS: ${{ inputs.providers || 'groq,gemini,cloudflare' }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: python tools/probe_models.py
+      - name: Commit probe results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/probe.json
+          git commit -m "probe models $(date -u +%Y-%m-%dT%H:%MZ)" || exit 0
+          git push

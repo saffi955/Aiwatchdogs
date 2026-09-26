@@ -122,6 +122,15 @@ def main() -> int:
     for model_cfg in config.watched_models(cfg):
         name = model_cfg["name"]
         model_hist = history["models"].get(name, [])
+        # Optional daily cap for providers with a tiny free quota (OpenRouter's
+        # free tier allows ~50 requests/day, i.e. one full suite).
+        cap = model_cfg.get("max_runs_per_day")
+        if cap is not None:
+            today = run_at[:10]
+            done_today = sum(1 for r in model_hist if str(r.get("run_at", ""))[:10] == today)
+            if done_today >= int(cap):
+                print(f"[runner] {name}: skipped (max_runs_per_day={cap} reached)")
+                continue
         try:
             results, raw_records = run_model(model_cfg, tests, run_cfg, run_at)
         except Exception as exc:  # noqa: BLE001 - never let one model kill the run

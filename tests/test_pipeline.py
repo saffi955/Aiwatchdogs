@@ -80,8 +80,14 @@ def test_drift_path(tmp: Path) -> None:
     )
     runner.main()
     history = json.loads(config.HISTORY_PATH.read_text())
+    capped = {m["name"] for m in config.watched_models(config.load_config())
+              if m.get("max_runs_per_day") == 1}
     # There is now a 2nd run per model; the corrupted one collapses format.
+    # Models capped at one run a day were skipped on this same-day 2nd run.
     for name, runs in history["models"].items():
+        if name in capped:
+            assert len(runs) == 1, (name, "max_runs_per_day not honored")
+            continue
         last = runs[-1]
         assert last["scores"]["format_compliance"] == 0.0, last["scores"]
         assert last["breach"] is True, name

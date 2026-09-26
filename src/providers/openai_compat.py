@@ -8,28 +8,41 @@ No new code needed to add a provider from this family.
 
 from __future__ import annotations
 
+import os
+import re
 import time
 
 from .base import Provider, ProviderResult
+
+
+# Some reasoning models (DeepSeek-R1 distills, QwQ, Qwen3) put their thinking in
+# the reply itself; only the final answer is checked.
+_THINK = re.compile(r"^.*?</think>\s*", re.DOTALL)
 
 
 class OpenAICompatProvider(Provider):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._client = None
-        self.base_url = self.model_cfg.get("base_url")  # None => api.openai.com
+        # ${VAR} in base_url is filled from the environment, e.g. Cloudflare's
+        # .../accounts/${CLOUDFLARE_ACCOUNT_ID}/ai/v1 (the account id is a secret).
+        base_url = self.model_cfg.get("base_url")  # None => api.openai.com
+        self.base_url = os.path.expandvars(base_url) if base_url else None
 
     def _get_client(self):
         if self._client is None:
             from openai import OpenAI
 
-            kwargs = {"api_key": self.api_key}
+            kwargs = {"api_key": self.api_key,
+                      "timeout": float(self.run_cfg.get("timeout_s", 30))}
             if self.base_url:
                 kwargs["base_url"] = self.base_url
             self._client = OpenAI(**kwargs)
         return self._client
 
     def _generate(self, system_prompt: str, user_prompt: str) -> ProviderResult:
+        if self.base_url and "${" in self.base_url:
+            raise RuntimeError(f"base_url has an unset variable: {self.base_url}")
         client = self._get_client()
         start = time.perf_counter()
         resp = client.chat.completions.create(
@@ -39,11 +52,11 @@ class OpenAICompatProvider(Provider):
                 {"role": "user", "content": user_prompt},
             ],
             temperature=float(self.run_cfg.get("temperature", 0)),
-            max_tokens=int(self.run_cfg.get("max_tokens", 512)),
+            max_tokens=self.max_tokens,
         )
         latency_ms = (time.perf_counter() - start) * 1000.0
 
-        text = resp.choices[0].message.content or ""
+        text = _THINK.sub("", resp.choices[0].message.content or "", count=1)
         usage = getattr(resp, "usage", None)
         return ProviderResult(
             text=text,
