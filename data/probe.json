@@ -1,5 +1,5 @@
 {
-  "probed_at": "2026-09-26T19:47:32Z",
+  "probed_at": "2026-09-26T22:04:04Z",
   "groq": {
     "models": [
       {
@@ -50,7 +50,7 @@
         "max_completion_tokens": 65536,
         "ok": true,
         "reply": "OK",
-        "ms": 439
+        "ms": 418
       },
       {
         "id": "openai/gpt-oss-20b",
@@ -60,7 +60,7 @@
         "max_completion_tokens": 65536,
         "ok": true,
         "reply": "OK",
-        "ms": 167
+        "ms": 356
       },
       {
         "id": "openai/gpt-oss-safeguard-20b",
@@ -78,7 +78,7 @@
         "max_completion_tokens": 16384,
         "ok": true,
         "reply": "OK",
-        "ms": 189
+        "ms": 136
       },
       {
         "id": "whisper-large-v3",
@@ -317,8 +317,7 @@
         "id": "gemma-4-31b-it",
         "input_limit": 262144,
         "output_limit": 32768,
-        "ok": false,
-        "error": "HTTP 500: {\n  \"error\": {\n    \"code\": 500,\n    \"message\": \"Internal error encountered.\",\n    \"status\": \"INTERNAL\"\n  }\n}\n"
+        "ok": true
       },
       {
         "id": "gemini-flash-latest",
@@ -563,6 +562,655 @@
         "output_limit": 65536,
         "ok": false,
         "error": "HTTP 400: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"This model only supports Interactions API.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n"
+      }
+    ]
+  },
+  "cloudflare": {
+    "models": [
+      {
+        "id": "@cf/aisingapore/gemma-sea-lion-v4-27b-it",
+        "context_window": "128000",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.351,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 0.555,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "OK\n",
+        "ms": 315
+      },
+      {
+        "id": "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
+        "context_window": "80000",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.497,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 4.881,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "<think>\nAlright, the user has instructed me to respond with exactly \"OK\" when th",
+        "ms": 3110
+      },
+      {
+        "id": "@cf/deepseek-ai/deepseek-v4-flash-0731",
+        "context_window": "1310720",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.44,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 1.32,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M cached input tokens",
+            "price": 0.014,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": false,
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/deepseek-ai/deepseek-v4-flash-0731 is not available on the Workers Free plan: Model @cf/deepseek-ai/deepseek-v4-flash-0731 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (51e4a",
+        "ms": 95
+      },
+      {
+        "id": "@cf/deepseek-ai/deepseek-v4-pro-0813",
+        "context_window": "1048576",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 1.32,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 3.96,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M cached input tokens",
+            "price": 0.044,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": false,
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/deepseek-ai/deepseek-v4-pro-0813 is not available on the Workers Free plan: Model @cf/deepseek-ai/deepseek-v4-pro-0813 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (704983c6-",
+        "ms": 570
+      },
+      {
+        "id": "@cf/google/gemma-2b-it-lora",
+        "context_window": "8192",
+        "price": null,
+        "beta": "true",
+        "deprecated": null,
+        "ok": true,
+        "reply": "OK, I am ready to assist you with any questions or tasks you may have. How can I",
+        "ms": 2328
+      },
+      {
+        "id": "@cf/google/gemma-4-26b-a4b-it",
+        "context_window": "256000",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.1,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 0.3,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "",
+        "ms": 779
+      },
+      {
+        "id": "@cf/google/gemma-7b-it-lora",
+        "context_window": "3500",
+        "price": null,
+        "beta": "true",
+        "deprecated": null,
+        "ok": true,
+        "reply": "OK\n\nSure, here is your reply:\n\n**OK**\n\nIs there anything else I can help you wit",
+        "ms": 2058
+      },
+      {
+        "id": "@cf/ibm-granite/granite-4.0-h-micro",
+        "context_window": "131000",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.017,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 0.112,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "OK",
+        "ms": 592
+      },
+      {
+        "id": "@cf/meta-llama/llama-2-7b-chat-hf-lora",
+        "context_window": "8192",
+        "price": null,
+        "beta": "true",
+        "deprecated": null,
+        "ok": true,
+        "reply": "",
+        "ms": 4099
+      },
+      {
+        "id": "@cf/meta/llama-3.1-8b-instruct-fp8",
+        "context_window": "32000",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.152,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 0.287,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "OK",
+        "ms": 346
+      },
+      {
+        "id": "@cf/meta/llama-3.2-11b-vision-instruct",
+        "context_window": "128000",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.0485,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 0.676,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": false,
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model Agreement: Prior to using this model, you must submit the prompt 'agree'. By submitting \u2018agree\u2019, you  hereby agree to the llama-3.2-11b-vision-instruct Community License https://github.com/meta-llama/llama-models/blob/main/models/llama3_2/LICENSE and Acceptable ",
+        "ms": 162
+      },
+      {
+        "id": "@cf/meta/llama-3.2-1b-instruct",
+        "context_window": "60000",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.027,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 0.201,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "OK",
+        "ms": 317
+      },
+      {
+        "id": "@cf/meta/llama-3.2-3b-instruct",
+        "context_window": "80000",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.0509,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 0.335,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "OK",
+        "ms": 253
+      },
+      {
+        "id": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+        "context_window": "24000",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.293,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 2.253,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "OK",
+        "ms": 529
+      },
+      {
+        "id": "@cf/meta/llama-4-scout-17b-16e-instruct",
+        "context_window": "131000",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.27,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 0.85,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "OK",
+        "ms": 252
+      },
+      {
+        "id": "@cf/meta/llama-guard-3-8b",
+        "context_window": "131072",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.484,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 0.03,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "skipped": true
+      },
+      {
+        "id": "@cf/mistral/mistral-7b-instruct-v0.2-lora",
+        "context_window": "15000",
+        "price": null,
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": " OK. I'm here to help answer any questions you might have or provide information",
+        "ms": 4246
+      },
+      {
+        "id": "@cf/mistralai/mistral-small-3.1-24b-instruct",
+        "context_window": "128000",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.351,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 0.555,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "OK",
+        "ms": 248
+      },
+      {
+        "id": "@cf/moonshotai/kimi-k2.6",
+        "context_window": "262144",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.95,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 4,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M cached input tokens",
+            "price": 0.16,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": false,
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/moonshotai/kimi-k2.6 is not available on the Workers Free plan: Model @cf/moonshotai/kimi-k2.6 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (f4264777-b19f-4659-8546-4da2fce8e",
+        "ms": 92
+      },
+      {
+        "id": "@cf/moonshotai/kimi-k2.7-code",
+        "context_window": "262144",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.95,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 4,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M cached input tokens",
+            "price": 0.19,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": false,
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/moonshotai/kimi-k2.7-code is not available on the Workers Free plan: Model @cf/moonshotai/kimi-k2.7-code is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (8f3a85c4-48b7-473e-8fab",
+        "ms": 687
+      },
+      {
+        "id": "@cf/nvidia/nemotron-3-120b-a12b",
+        "context_window": "256000",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.5,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 1.5,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "\n\nOK",
+        "ms": 510
+      },
+      {
+        "id": "@cf/openai/gpt-oss-120b",
+        "context_window": "128000",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.35,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 0.75,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "OK",
+        "ms": 1280
+      },
+      {
+        "id": "@cf/openai/gpt-oss-20b",
+        "context_window": "128000",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.2,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 0.3,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "OK",
+        "ms": 429
+      },
+      {
+        "id": "@cf/qwen/qwen2.5-coder-32b-instruct",
+        "context_window": "32768",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.66,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 1,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "OK",
+        "ms": 251
+      },
+      {
+        "id": "@cf/qwen/qwen3-30b-a3b-fp8",
+        "context_window": "32768",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.0509,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 0.335,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "",
+        "ms": 403
+      },
+      {
+        "id": "@cf/qwen/qwen3.8-27b",
+        "context_window": "262144",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.45,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 3.2,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M cached input tokens",
+            "price": 0.05,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "\n\nOK",
+        "ms": 722
+      },
+      {
+        "id": "@cf/qwen/qwq-32b",
+        "context_window": "24000",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.66,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 1,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "Okay, the user wants me to reply with exactly \"OK\". Let me make sure I understan",
+        "ms": 1985
+      },
+      {
+        "id": "@cf/zai-org/glm-4.7-flash",
+        "context_window": "131072",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.0605,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 0.4,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "OK",
+        "ms": 526
+      },
+      {
+        "id": "@cf/zai-org/glm-5.2",
+        "context_window": "262144",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 1.4,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 4.4,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M cached input tokens",
+            "price": 0.26,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": false,
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/zai-org/glm-5.2 is not available on the Workers Free plan: Model @cf/zai-org/glm-5.2 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (46aeadb1-dd46-4be5-8319-2316f88c3cf3)\",\"cod",
+        "ms": 81
+      },
+      {
+        "id": "@cf/zai-org/glm-5.3",
+        "context_window": "1310720",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 1.4,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 4.4,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M cached input tokens",
+            "price": 0.26,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": false,
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/zai-org/glm-5.3 is not available on the Workers Free plan: Model @cf/zai-org/glm-5.3 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (252c69fd-a791-4d05-97f6-7860bf52ead8)\",\"cod",
+        "ms": 75
+      },
+      {
+        "id": "@cf/zai-org/glm-5.3-flash",
+        "context_window": "1310720",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.15,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 0.5,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M cached input tokens",
+            "price": 0.03,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": false,
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/zai-org/glm-5.3-flash is not available on the Workers Free plan: Model @cf/zai-org/glm-5.3-flash is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (23ecea64-5cea-49d3-812f-eb9e688",
+        "ms": 75
       }
     ]
   }
