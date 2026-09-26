@@ -1,0 +1,569 @@
+{
+  "probed_at": "2026-09-26T19:47:32Z",
+  "groq": {
+    "models": [
+      {
+        "id": "allam-2-7b",
+        "owned_by": "SDAIA",
+        "active": true,
+        "context_window": 4096,
+        "max_completion_tokens": 4096,
+        "skipped": true
+      },
+      {
+        "id": "canopylabs/orpheus-arabic-saudi",
+        "owned_by": "Canopy Labs",
+        "active": true,
+        "context_window": 4000,
+        "max_completion_tokens": 50000,
+        "skipped": true
+      },
+      {
+        "id": "canopylabs/orpheus-v1-english",
+        "owned_by": "Canopy Labs",
+        "active": true,
+        "context_window": 4000,
+        "max_completion_tokens": 50000,
+        "skipped": true
+      },
+      {
+        "id": "meta-llama/llama-prompt-guard-2-22m",
+        "owned_by": "Meta",
+        "active": true,
+        "context_window": 512,
+        "max_completion_tokens": 512,
+        "skipped": true
+      },
+      {
+        "id": "meta-llama/llama-prompt-guard-2-86m",
+        "owned_by": "Meta",
+        "active": true,
+        "context_window": 512,
+        "max_completion_tokens": 512,
+        "skipped": true
+      },
+      {
+        "id": "openai/gpt-oss-120b",
+        "owned_by": "OpenAI",
+        "active": true,
+        "context_window": 131072,
+        "max_completion_tokens": 65536,
+        "ok": true,
+        "reply": "OK",
+        "ms": 439
+      },
+      {
+        "id": "openai/gpt-oss-20b",
+        "owned_by": "OpenAI",
+        "active": true,
+        "context_window": 131072,
+        "max_completion_tokens": 65536,
+        "ok": true,
+        "reply": "OK",
+        "ms": 167
+      },
+      {
+        "id": "openai/gpt-oss-safeguard-20b",
+        "owned_by": "OpenAI",
+        "active": true,
+        "context_window": 131072,
+        "max_completion_tokens": 65536,
+        "skipped": true
+      },
+      {
+        "id": "qwen/qwen3.8-27b",
+        "owned_by": "Alibaba Cloud",
+        "active": true,
+        "context_window": 131072,
+        "max_completion_tokens": 16384,
+        "ok": true,
+        "reply": "OK",
+        "ms": 189
+      },
+      {
+        "id": "whisper-large-v3",
+        "owned_by": "OpenAI",
+        "active": true,
+        "context_window": 448,
+        "max_completion_tokens": 448,
+        "skipped": true
+      },
+      {
+        "id": "whisper-large-v3-turbo",
+        "owned_by": "OpenAI",
+        "active": true,
+        "context_window": 448,
+        "max_completion_tokens": 448,
+        "skipped": true
+      }
+    ]
+  },
+  "openrouter": {
+    "key_info": {
+      "label": "sk-or-v1-f01...234",
+      "is_management_key": false,
+      "is_provisioning_key": false,
+      "limit": null,
+      "limit_reset": null,
+      "limit_remaining": null,
+      "include_byok_in_limit": false,
+      "usage": 0,
+      "usage_daily": 0,
+      "usage_weekly": 0,
+      "usage_monthly": 0,
+      "byok_usage": 0,
+      "byok_usage_daily": 0,
+      "byok_usage_weekly": 0,
+      "byok_usage_monthly": 0,
+      "is_free_tier": true,
+      "expires_at": null,
+      "creator_user_id": "user_3GdFrRrjkOu0nJwhmYvXhiLCqB1",
+      "organization_id": null,
+      "workspace_id": "fe6efd03-7542-5dfb-8ddd-9892c8f309b6",
+      "allowed_data_regions": [
+        "global"
+      ],
+      "free_model_daily_requests": {
+        "used": 0,
+        "limit": 50,
+        "remaining": 50
+      },
+      "rate_limit": {
+        "requests": -1,
+        "interval": "10s",
+        "note": "This field is deprecated and safe to ignore."
+      }
+    },
+    "free_models": [
+      {
+        "id": "cohere/north-mini-code:free",
+        "context_length": 256000,
+        "max_completion_tokens": 64000,
+        "ok": true,
+        "reply": "OK",
+        "ms": 497
+      },
+      {
+        "id": "dots-studio/dots-3-note-preview:free",
+        "context_length": 512000,
+        "max_completion_tokens": 460800,
+        "ok": true,
+        "reply": "",
+        "ms": 1500
+      },
+      {
+        "id": "google/gemma-4-26b-a4b-it:free",
+        "context_length": 262144,
+        "max_completion_tokens": 32768,
+        "ok": false,
+        "error": "HTTP 429: {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-26b-a4b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations\",\"provider_name\":\"Google AI Studio\",\"",
+        "ms": 128
+      },
+      {
+        "id": "google/gemma-4-31b-it:free",
+        "context_length": 262144,
+        "max_completion_tokens": 32768,
+        "ok": false,
+        "error": "HTTP 429: {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-4-31b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations\",\"provider_name\":\"Google AI Studio\",\"is_b",
+        "ms": 124
+      },
+      {
+        "id": "inclusionai/ling-3.0-flash-fin:free",
+        "context_length": 262144,
+        "max_completion_tokens": 32768,
+        "ok": true,
+        "reply": "",
+        "ms": 721
+      },
+      {
+        "id": "inclusionai/ling-3.0-flash-sante:free",
+        "context_length": 262144,
+        "max_completion_tokens": 32768,
+        "ok": true,
+        "reply": "OK",
+        "ms": 939
+      },
+      {
+        "id": "liquid/lfm-2.5-2.6b:free",
+        "context_length": 65536,
+        "max_completion_tokens": 8192,
+        "ok": true,
+        "reply": "OK",
+        "ms": 321
+      },
+      {
+        "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+        "context_length": 256000,
+        "max_completion_tokens": 65536,
+        "ok": true,
+        "reply": "OK",
+        "ms": 507
+      },
+      {
+        "id": "nvidia/nemotron-3-super-120b-a12b:free",
+        "context_length": 262144,
+        "max_completion_tokens": 235929,
+        "ok": true,
+        "reply": "OK",
+        "ms": 748
+      },
+      {
+        "id": "nvidia/nemotron-3-ultra-550b-a55b:free",
+        "context_length": 1000000,
+        "max_completion_tokens": 65536,
+        "ok": true,
+        "reply": "OK",
+        "ms": 588
+      },
+      {
+        "id": "nvidia/nemotron-3.5-content-safety:free",
+        "context_length": 128000,
+        "max_completion_tokens": 8192,
+        "ok": true,
+        "reply": "",
+        "ms": 1023
+      },
+      {
+        "id": "nvidia/nemotron-3.5-lightning:free",
+        "context_length": 1000000,
+        "max_completion_tokens": 65536,
+        "ok": true,
+        "reply": "Here's a thinking process:\n\n1.  **Analyze User Input:** The user says \"Reply wit",
+        "ms": 627
+      },
+      {
+        "id": "poolside/laguna-s-2.1:free",
+        "context_length": 262144,
+        "max_completion_tokens": 32768,
+        "ok": true,
+        "reply": "OK",
+        "ms": 611
+      },
+      {
+        "id": "poolside/laguna-xs-2.1:free",
+        "context_length": 262144,
+        "max_completion_tokens": 32768,
+        "ok": false,
+        "error": "HTTP 429: {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"poolside/laguna-xs-2.1:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations\",\"provider_name\":\"Poolside\",\"is_byok\":fa",
+        "ms": 140
+      },
+      {
+        "id": "qwen/qwen3.8-27b:free",
+        "context_length": 262144,
+        "max_completion_tokens": 235929,
+        "ok": false,
+        "error": "HTTP 429: {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"qwen/qwen3.8-27b:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations\",\"provider_name\":\"ModelRun\",\"is_byok\":false,\"p",
+        "ms": 98
+      },
+      {
+        "id": "thinkingmachines/inkling-small:free",
+        "context_length": 1048576,
+        "max_completion_tokens": 262144,
+        "ok": false,
+        "error": "HTTP 403: {\"error\":{\"message\":\"thinkingmachines/inkling-small:free is only available on agentic harnesses. Try plugging it into a coding agent or productivity app listed on https://openrouter.ai/apps\",\"code\":403,\"metadata\":{\"routing_funnel\":[{\"step\":\"Initial Endpoints\",\"endpoint_count\":1}],\"failed_routing_ste",
+        "ms": 49
+      },
+      {
+        "id": "thinkingmachines/inkling:free",
+        "context_length": 1048576,
+        "max_completion_tokens": 262144,
+        "ok": false,
+        "error": "HTTP 403: {\"error\":{\"message\":\"thinkingmachines/inkling:free is only available on agentic harnesses. Try plugging it into a coding agent or productivity app listed on https://openrouter.ai/apps\",\"code\":403,\"metadata\":{\"routing_funnel\":[{\"step\":\"Initial Endpoints\",\"endpoint_count\":1}],\"failed_routing_step\":\"Ga",
+        "ms": 44
+      }
+    ]
+  },
+  "github_models": {
+    "gpt-4o-mini": {
+      "ok": false,
+      "error": "bad body JSONDecodeError: OK\r\n"
+    }
+  },
+  "gemini": {
+    "models": [
+      {
+        "id": "gemini-2.5-flash",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 404: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs"
+      },
+      {
+        "id": "gemini-2.5-pro",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 404: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/"
+      },
+      {
+        "id": "gemini-2.5-flash-preview-tts",
+        "input_limit": 8192,
+        "output_limit": 16384,
+        "skipped": true
+      },
+      {
+        "id": "gemini-2.5-pro-preview-tts",
+        "input_limit": 8192,
+        "output_limit": 16384,
+        "skipped": true
+      },
+      {
+        "id": "gemma-4-26b-a4b-it",
+        "input_limit": 262144,
+        "output_limit": 32768,
+        "ok": true
+      },
+      {
+        "id": "gemma-4-31b-it",
+        "input_limit": 262144,
+        "output_limit": 32768,
+        "ok": false,
+        "error": "HTTP 500: {\n  \"error\": {\n    \"code\": 500,\n    \"message\": \"Internal error encountered.\",\n    \"status\": \"INTERNAL\"\n  }\n}\n"
+      },
+      {
+        "id": "gemini-flash-latest",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": true
+      },
+      {
+        "id": "gemini-flash-lite-latest",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": true
+      },
+      {
+        "id": "gemini-pro-latest",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
+      },
+      {
+        "id": "gemini-2.5-flash-lite",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 404: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemin"
+      },
+      {
+        "id": "gemini-2.5-flash-image",
+        "input_limit": 32768,
+        "output_limit": 32768,
+        "skipped": true
+      },
+      {
+        "id": "gemini-3-flash-preview",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": true
+      },
+      {
+        "id": "gemini-3.1-pro-preview",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
+      },
+      {
+        "id": "gemini-3.1-pro-preview-customtools",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
+      },
+      {
+        "id": "gemini-3.1-flash-lite-preview",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": true
+      },
+      {
+        "id": "gemini-3.1-flash-lite",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": true
+      },
+      {
+        "id": "gemini-3-pro-image-preview",
+        "input_limit": 131072,
+        "output_limit": 32768,
+        "skipped": true
+      },
+      {
+        "id": "gemini-3-pro-image",
+        "input_limit": 131072,
+        "output_limit": 32768,
+        "skipped": true
+      },
+      {
+        "id": "nano-banana-pro-preview",
+        "input_limit": 131072,
+        "output_limit": 32768,
+        "ok": false,
+        "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
+      },
+      {
+        "id": "gemini-3.1-flash-image-preview",
+        "input_limit": 65536,
+        "output_limit": 65536,
+        "skipped": true
+      },
+      {
+        "id": "gemini-3.1-flash-image",
+        "input_limit": 65536,
+        "output_limit": 65536,
+        "skipped": true
+      },
+      {
+        "id": "gemini-3.1-flash-lite-image",
+        "input_limit": 65536,
+        "output_limit": 65536,
+        "skipped": true
+      },
+      {
+        "id": "gemini-3.5-flash",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": true
+      },
+      {
+        "id": "gemini-3.5-flash-lite",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": true
+      },
+      {
+        "id": "gemini-omni-flash-preview",
+        "input_limit": 131072,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
+      },
+      {
+        "id": "gemini-omni-1.1-flash",
+        "input_limit": 131072,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
+      },
+      {
+        "id": "gemini-3.5-transcribe",
+        "input_limit": 98304,
+        "output_limit": 32768,
+        "ok": true
+      },
+      {
+        "id": "gemini-3.6-flash",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": true
+      },
+      {
+        "id": "gemini-3.7-flash",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": true
+      },
+      {
+        "id": "gemini-3.8-flash",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": true
+      },
+      {
+        "id": "lyria-3-clip-preview",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
+      },
+      {
+        "id": "lyria-3-pro-preview",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
+      },
+      {
+        "id": "lyria-3.5",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
+      },
+      {
+        "id": "gemini-3.1-flash-tts-preview",
+        "input_limit": 8192,
+        "output_limit": 16384,
+        "skipped": true
+      },
+      {
+        "id": "gemini-3.8-flash-tts",
+        "input_limit": 8192,
+        "output_limit": 16384,
+        "skipped": true
+      },
+      {
+        "id": "gemini-3.8-flash-lite-tts",
+        "input_limit": 8192,
+        "output_limit": 16384,
+        "skipped": true
+      },
+      {
+        "id": "gemini-robotics-er-2-preview",
+        "input_limit": 131072,
+        "output_limit": 65536,
+        "skipped": true
+      },
+      {
+        "id": "gemini-2.5-computer-use-preview-10-2025",
+        "input_limit": 131072,
+        "output_limit": 65536,
+        "skipped": true
+      },
+      {
+        "id": "antigravity-preview-05-2026",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 400: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"This model only supports Interactions API.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n"
+      },
+      {
+        "id": "antigravity-preview-09-2026",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 400: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"This model only supports Interactions API.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n"
+      },
+      {
+        "id": "antigravity-preview-latest",
+        "input_limit": 1048576,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 400: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"This model only supports Interactions API.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n"
+      },
+      {
+        "id": "deep-research-max-preview-04-2026",
+        "input_limit": 131072,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 400: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"This model only supports Interactions API.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n"
+      },
+      {
+        "id": "deep-research-preview-04-2026",
+        "input_limit": 131072,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 400: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"This model only supports Interactions API.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n"
+      },
+      {
+        "id": "deep-research-pro-preview-12-2025",
+        "input_limit": 131072,
+        "output_limit": 65536,
+        "ok": false,
+        "error": "HTTP 400: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"This model only supports Interactions API.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n"
+      }
+    ]
+  }
+}
