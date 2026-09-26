@@ -1,12 +1,9 @@
 name: probe-models
 
-# One-off: lists and test-calls every model the provider keys can reach, then
-# commits data/probe.json. Runs on pushes to claude/** branches that touch the
-# probe, or manually.
+# Manual: lists and test-calls every model the provider keys can reach, then
+# commits data/probe.json. Run it from the Actions tab when choosing models.
+# Note it spends ~20 of OpenRouter's 50 free requests for that day.
 on:
-  push:
-    branches: ["claude/**"]
-    paths: ["tools/probe_models.py", ".github/workflows/probe.yml"]
   workflow_dispatch: {}
 
 permissions:
@@ -26,7 +23,6 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-          TITHUB_MODELS_API_KEY: ${{ secrets.TITHUB_MODELS_API_KEY }}
         run: python tools/probe_models.py
       - name: Commit probe results
         run: |

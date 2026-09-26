@@ -85,11 +85,6 @@ def probe_openrouter(key):
     return res
 
 
-def probe_github(key):
-    base = "https://models.github.ai/inference"
-    return {"gpt-4o-mini": chat(base, key, "openai/gpt-4o-mini")}
-
-
 def probe_gemini(key):
     base = "https://generativelanguage.googleapis.com/v1beta"
     r = requests.get(f"{base}/models", params={"key": key, "pageSize": 1000}, timeout=30)
@@ -118,7 +113,6 @@ def main():
     result = {"probed_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
     for name, env, fn in [("groq", "GROQ_API_KEY", probe_groq),
                           ("openrouter", "OPENROUTER_API_KEY", probe_openrouter),
-                          ("github_models", "TITHUB_MODELS_API_KEY", probe_github),
                           ("gemini", "GEMINI_API_KEY", probe_gemini)]:
         key = os.environ.get(env)
         if not key:

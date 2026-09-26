@@ -31,9 +31,13 @@ class GeminiProvider(Provider):
             "systemInstruction": {"parts": [{"text": system_prompt}]},
             "generationConfig": {
                 "temperature": float(self.run_cfg.get("temperature", 0)),
-                "maxOutputTokens": int(self.run_cfg.get("max_tokens", 512)),
+                "maxOutputTokens": self.max_tokens,
             },
         }
+        if self.model_id.startswith("gemma"):
+            # Gemma on AI Studio rejects systemInstruction; fold it into the turn.
+            body["contents"][0]["parts"][0]["text"] = f"{system_prompt}\n\n{user_prompt}"
+            del body["systemInstruction"]
         timeout = int(self.run_cfg.get("timeout_s", 30))
         start = time.perf_counter()
         resp = requests.post(url, params={"key": self.api_key}, json=body, timeout=timeout)

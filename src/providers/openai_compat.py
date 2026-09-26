@@ -23,7 +23,8 @@ class OpenAICompatProvider(Provider):
         if self._client is None:
             from openai import OpenAI
 
-            kwargs = {"api_key": self.api_key}
+            kwargs = {"api_key": self.api_key,
+                      "timeout": float(self.run_cfg.get("timeout_s", 30))}
             if self.base_url:
                 kwargs["base_url"] = self.base_url
             self._client = OpenAI(**kwargs)
@@ -39,7 +40,7 @@ class OpenAICompatProvider(Provider):
                 {"role": "user", "content": user_prompt},
             ],
             temperature=float(self.run_cfg.get("temperature", 0)),
-            max_tokens=int(self.run_cfg.get("max_tokens", 512)),
+            max_tokens=self.max_tokens,
         )
         latency_ms = (time.perf_counter() - start) * 1000.0
 
