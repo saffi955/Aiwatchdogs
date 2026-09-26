@@ -8,6 +8,7 @@ No new code needed to add a provider from this family.
 
 from __future__ import annotations
 
+import os
 import time
 
 from .base import Provider, ProviderResult
@@ -17,7 +18,10 @@ class OpenAICompatProvider(Provider):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._client = None
-        self.base_url = self.model_cfg.get("base_url")  # None => api.openai.com
+        # ${VAR} in base_url is filled from the environment, e.g. Cloudflare's
+        # .../accounts/${CLOUDFLARE_ACCOUNT_ID}/ai/v1 (the account id is a secret).
+        base_url = self.model_cfg.get("base_url")  # None => api.openai.com
+        self.base_url = os.path.expandvars(base_url) if base_url else None
 
     def _get_client(self):
         if self._client is None:
@@ -31,6 +35,8 @@ class OpenAICompatProvider(Provider):
         return self._client
 
     def _generate(self, system_prompt: str, user_prompt: str) -> ProviderResult:
+        if self.base_url and "${" in self.base_url:
+            raise RuntimeError(f"base_url has an unset variable: {self.base_url}")
         client = self._get_client()
         start = time.perf_counter()
         resp = client.chat.completions.create(

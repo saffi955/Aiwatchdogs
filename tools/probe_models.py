@@ -85,6 +85,38 @@ def probe_openrouter(key):
     return res
 
 
+def probe_cloudflare(token):
+    acct = os.environ.get("CLOUDFLARE_ACCOUNT_ID")
+    if not acct:
+        return {"error": "CLOUDFLARE_ACCOUNT_ID not set"}
+    root = f"https://api.cloudflare.com/client/v4/accounts/{acct}/ai"
+    h = {"Authorization": f"Bearer {token}"}
+    models, page = [], 1
+    while True:
+        r = requests.get(f"{root}/models/search", headers=h, timeout=30,
+                         params={"task": "Text Generation", "per_page": 100, "page": page})
+        if r.status_code != 200:
+            return {"error": _err(r)}
+        batch = r.json().get("result", [])
+        models += batch
+        if len(batch) < 100:
+            break
+        page += 1
+    out = []
+    for m in sorted(models, key=lambda m: m["name"]):
+        props = {p.get("property_id"): p.get("value") for p in m.get("properties", [])}
+        row = {"id": m["name"], "context_window": props.get("context_window"),
+               "price": props.get("price"), "beta": props.get("beta"),
+               "deprecated": props.get("planned_deprecation_date")}
+        if any(s in m["name"].lower() for s in SKIP):
+            row["skipped"] = True
+        else:
+            row.update(chat(f"{root}/v1", token, m["name"]))
+            time.sleep(1)
+        out.append(row)
+    return {"models": out}
+
+
 def probe_gemini(key):
     base = "https://generativelanguage.googleapis.com/v1beta"
     r = requests.get(f"{base}/models", params={"key": key, "pageSize": 1000}, timeout=30)
@@ -110,10 +142,16 @@ def probe_gemini(key):
 
 
 def main():
-    result = {"probed_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
+    # Keep earlier results for providers not probed this time.
+    result = json.loads(OUT.read_text()) if OUT.exists() else {}
+    result["probed_at"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+    wanted = os.environ.get("PROBE_PROVIDERS", "all").replace(" ", "").split(",")
     for name, env, fn in [("groq", "GROQ_API_KEY", probe_groq),
                           ("openrouter", "OPENROUTER_API_KEY", probe_openrouter),
-                          ("gemini", "GEMINI_API_KEY", probe_gemini)]:
+                          ("gemini", "GEMINI_API_KEY", probe_gemini),
+                          ("cloudflare", "CLOUDFLARE_API_TOKEN", probe_cloudflare)]:
+        if "all" not in wanted and name not in wanted:
+            continue
         key = os.environ.get(env)
         if not key:
             result[name] = {"error": f"{env} not set"}

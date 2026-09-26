@@ -72,6 +72,8 @@ different AI models (the raw sources are the `*.txt` files in the repo root):
    - `GEMINI_API_KEY` (free tier at [Google AI Studio](https://aistudio.google.com/apikey))
    - `GROQ_API_KEY` (free tier at [console.groq.com](https://console.groq.com/keys))
    - `OPENROUTER_API_KEY` (free models at [openrouter.ai](https://openrouter.ai/keys))
+   - `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` (Workers AI, 10,000 free
+     neurons/day; the token needs the "Workers AI: Read" permission)
    - `DISCORD_WEBHOOK_URL` (Server Settings → Integrations → Webhooks)
 
    Each secret must also be passed to the job in `.github/workflows/watchdog.yml`
