@@ -9,9 +9,15 @@ No new code needed to add a provider from this family.
 from __future__ import annotations
 
 import os
+import re
 import time
 
 from .base import Provider, ProviderResult
+
+
+# Some reasoning models (DeepSeek-R1 distills, QwQ, Qwen3) put their thinking in
+# the reply itself; only the final answer is checked.
+_THINK = re.compile(r"^.*?</think>\s*", re.DOTALL)
 
 
 class OpenAICompatProvider(Provider):
@@ -50,7 +56,7 @@ class OpenAICompatProvider(Provider):
         )
         latency_ms = (time.perf_counter() - start) * 1000.0
 
-        text = resp.choices[0].message.content or ""
+        text = _THINK.sub("", resp.choices[0].message.content or "", count=1)
         usage = getattr(resp, "usage", None)
         return ProviderResult(
             text=text,
