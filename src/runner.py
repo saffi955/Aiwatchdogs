@@ -170,7 +170,7 @@ def main() -> int:
             pass  # already logged inside
 
     save_json(config.HISTORY_PATH, history)
-    _write_dashboard_history(history)
+    _write_dashboard_history(history, {m["name"] for m in config.watched_models(cfg)})
 
     # Per-run heartbeat: one Discord message summarizing every model this run.
     # Wrapped so a webhook/network failure can never fail the watchdog itself.
@@ -183,10 +183,15 @@ def main() -> int:
     return exit_code
 
 
-def _write_dashboard_history(history: dict) -> None:
-    """Compact per-model time series for the Chart.js dashboard."""
+def _write_dashboard_history(history: dict, watched: set[str] | None = None) -> None:
+    """Compact per-model time series for the Chart.js dashboard.
+
+    Only currently watched models are shown, so retired rows don't linger on
+    the graph as flat zero lines; data/history.json keeps the full record."""
     out = {"generated_at": _now_iso(), "models": {}}
     for name, runs in history["models"].items():
+        if watched is not None and name not in watched:
+            continue
         out["models"][name] = [
             {
                 "run_at": r.get("run_at"),
@@ -196,6 +201,9 @@ def _write_dashboard_history(history: dict) -> None:
                 "latency_ms_avg": r.get("latency_ms_avg"),
                 "alerted": r.get("alerted", False),
                 "calibrating": r.get("calibrating", False),
+                "breach": r.get("breach", False),
+                "baseline_avg": r.get("baseline_avg"),
+                "error_count": r.get("error_count", 0),
             }
             for r in runs
         ]

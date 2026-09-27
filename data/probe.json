@@ -1,5 +1,5 @@
 {
-  "probed_at": "2026-09-26T22:04:04Z",
+  "probed_at": "2026-09-27T05:08:18Z",
   "groq": {
     "models": [
       {
@@ -50,7 +50,7 @@
         "max_completion_tokens": 65536,
         "ok": true,
         "reply": "OK",
-        "ms": 418
+        "ms": 341
       },
       {
         "id": "openai/gpt-oss-20b",
@@ -60,7 +60,7 @@
         "max_completion_tokens": 65536,
         "ok": true,
         "reply": "OK",
-        "ms": 356
+        "ms": 202
       },
       {
         "id": "openai/gpt-oss-safeguard-20b",
@@ -78,7 +78,7 @@
         "max_completion_tokens": 16384,
         "ok": true,
         "reply": "OK",
-        "ms": 136
+        "ms": 141
       },
       {
         "id": "whisper-large-v3",
@@ -280,290 +280,7 @@
     }
   },
   "gemini": {
-    "models": [
-      {
-        "id": "gemini-2.5-flash",
-        "input_limit": 1048576,
-        "output_limit": 65536,
-        "ok": false,
-        "error": "HTTP 404: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs"
-      },
-      {
-        "id": "gemini-2.5-pro",
-        "input_limit": 1048576,
-        "output_limit": 65536,
-        "ok": false,
-        "error": "HTTP 404: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/"
-      },
-      {
-        "id": "gemini-2.5-flash-preview-tts",
-        "input_limit": 8192,
-        "output_limit": 16384,
-        "skipped": true
-      },
-      {
-        "id": "gemini-2.5-pro-preview-tts",
-        "input_limit": 8192,
-        "output_limit": 16384,
-        "skipped": true
-      },
-      {
-        "id": "gemma-4-26b-a4b-it",
-        "input_limit": 262144,
-        "output_limit": 32768,
-        "ok": true
-      },
-      {
-        "id": "gemma-4-31b-it",
-        "input_limit": 262144,
-        "output_limit": 32768,
-        "ok": true
-      },
-      {
-        "id": "gemini-flash-latest",
-        "input_limit": 1048576,
-        "output_limit": 65536,
-        "ok": true
-      },
-      {
-        "id": "gemini-flash-lite-latest",
-        "input_limit": 1048576,
-        "output_limit": 65536,
-        "ok": true
-      },
-      {
-        "id": "gemini-pro-latest",
-        "input_limit": 1048576,
-        "output_limit": 65536,
-        "ok": false,
-        "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
-      },
-      {
-        "id": "gemini-2.5-flash-lite",
-        "input_limit": 1048576,
-        "output_limit": 65536,
-        "ok": false,
-        "error": "HTTP 404: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code to use models/gemini-3.5-flash-lite for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemin"
-      },
-      {
-        "id": "gemini-2.5-flash-image",
-        "input_limit": 32768,
-        "output_limit": 32768,
-        "skipped": true
-      },
-      {
-        "id": "gemini-3-flash-preview",
-        "input_limit": 1048576,
-        "output_limit": 65536,
-        "ok": true
-      },
-      {
-        "id": "gemini-3.1-pro-preview",
-        "input_limit": 1048576,
-        "output_limit": 65536,
-        "ok": false,
-        "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
-      },
-      {
-        "id": "gemini-3.1-pro-preview-customtools",
-        "input_limit": 1048576,
-        "output_limit": 65536,
-        "ok": false,
-        "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
-      },
-      {
-        "id": "gemini-3.1-flash-lite-preview",
-        "input_limit": 1048576,
-        "output_limit": 65536,
-        "ok": true
-      },
-      {
-        "id": "gemini-3.1-flash-lite",
-        "input_limit": 1048576,
-        "output_limit": 65536,
-        "ok": true
-      },
-      {
-        "id": "gemini-3-pro-image-preview",
-        "input_limit": 131072,
-        "output_limit": 32768,
-        "skipped": true
-      },
-      {
-        "id": "gemini-3-pro-image",
-        "input_limit": 131072,
-        "output_limit": 32768,
-        "skipped": true
-      },
-      {
-        "id": "nano-banana-pro-preview",
-        "input_limit": 131072,
-        "output_limit": 32768,
-        "ok": false,
-        "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
-      },
-      {
-        "id": "gemini-3.1-flash-image-preview",
-        "input_limit": 65536,
-        "output_limit": 65536,
-        "skipped": true
-      },
-      {
-        "id": "gemini-3.1-flash-image",
-        "input_limit": 65536,
-        "output_limit": 65536,
-        "skipped": true
-      },
-      {
-        "id": "gemini-3.1-flash-lite-image",
-        "input_limit": 65536,
-        "output_limit": 65536,
-        "skipped": true
-      },
-      {
-        "id": "gemini-3.5-flash",
-        "input_limit": 1048576,
-        "output_limit": 65536,
-        "ok": true
-      },
-      {
-        "id": "gemini-3.5-flash-lite",
-        "input_limit": 1048576,
-        "output_limit": 65536,
-        "ok": true
-      },
-      {
-        "id": "gemini-omni-flash-preview",
-        "input_limit": 131072,
-        "output_limit": 65536,
-        "ok": false,
-        "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
-      },
-      {
-        "id": "gemini-omni-1.1-flash",
-        "input_limit": 131072,
-        "output_limit": 65536,
-        "ok": false,
-        "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
-      },
-      {
-        "id": "gemini-3.5-transcribe",
-        "input_limit": 98304,
-        "output_limit": 32768,
-        "ok": true
-      },
-      {
-        "id": "gemini-3.6-flash",
-        "input_limit": 1048576,
-        "output_limit": 65536,
-        "ok": true
-      },
-      {
-        "id": "gemini-3.7-flash",
-        "input_limit": 1048576,
-        "output_limit": 65536,
-        "ok": true
-      },
-      {
-        "id": "gemini-3.8-flash",
-        "input_limit": 1048576,
-        "output_limit": 65536,
-        "ok": true
-      },
-      {
-        "id": "lyria-3-clip-preview",
-        "input_limit": 1048576,
-        "output_limit": 65536,
-        "ok": false,
-        "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
-      },
-      {
-        "id": "lyria-3-pro-preview",
-        "input_limit": 1048576,
-        "output_limit": 65536,
-        "ok": false,
-        "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
-      },
-      {
-        "id": "lyria-3.5",
-        "input_limit": 1048576,
-        "output_limit": 65536,
-        "ok": false,
-        "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
-      },
-      {
-        "id": "gemini-3.1-flash-tts-preview",
-        "input_limit": 8192,
-        "output_limit": 16384,
-        "skipped": true
-      },
-      {
-        "id": "gemini-3.8-flash-tts",
-        "input_limit": 8192,
-        "output_limit": 16384,
-        "skipped": true
-      },
-      {
-        "id": "gemini-3.8-flash-lite-tts",
-        "input_limit": 8192,
-        "output_limit": 16384,
-        "skipped": true
-      },
-      {
-        "id": "gemini-robotics-er-2-preview",
-        "input_limit": 131072,
-        "output_limit": 65536,
-        "skipped": true
-      },
-      {
-        "id": "gemini-2.5-computer-use-preview-10-2025",
-        "input_limit": 131072,
-        "output_limit": 65536,
-        "skipped": true
-      },
-      {
-        "id": "antigravity-preview-05-2026",
-        "input_limit": 1048576,
-        "output_limit": 65536,
-        "ok": false,
-        "error": "HTTP 400: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"This model only supports Interactions API.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n"
-      },
-      {
-        "id": "antigravity-preview-09-2026",
-        "input_limit": 1048576,
-        "output_limit": 65536,
-        "ok": false,
-        "error": "HTTP 400: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"This model only supports Interactions API.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n"
-      },
-      {
-        "id": "antigravity-preview-latest",
-        "input_limit": 1048576,
-        "output_limit": 65536,
-        "ok": false,
-        "error": "HTTP 400: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"This model only supports Interactions API.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n"
-      },
-      {
-        "id": "deep-research-max-preview-04-2026",
-        "input_limit": 131072,
-        "output_limit": 65536,
-        "ok": false,
-        "error": "HTTP 400: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"This model only supports Interactions API.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n"
-      },
-      {
-        "id": "deep-research-preview-04-2026",
-        "input_limit": 131072,
-        "output_limit": 65536,
-        "ok": false,
-        "error": "HTTP 400: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"This model only supports Interactions API.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n"
-      },
-      {
-        "id": "deep-research-pro-preview-12-2025",
-        "input_limit": 131072,
-        "output_limit": 65536,
-        "ok": false,
-        "error": "HTTP 400: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"This model only supports Interactions API.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n"
-      }
-    ]
+    "error": "ReadTimeout: HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=60)"
   },
   "cloudflare": {
     "models": [
@@ -586,7 +303,7 @@
         "deprecated": null,
         "ok": true,
         "reply": "OK\n",
-        "ms": 315
+        "ms": 362
       },
       {
         "id": "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
@@ -606,8 +323,8 @@
         "beta": null,
         "deprecated": null,
         "ok": true,
-        "reply": "<think>\nAlright, the user has instructed me to respond with exactly \"OK\" when th",
-        "ms": 3110
+        "reply": "<think>\nOkay, so I'm trying to figure out how to create a simple calculator usin",
+        "ms": 2868
       },
       {
         "id": "@cf/deepseek-ai/deepseek-v4-flash-0731",
@@ -632,8 +349,8 @@
         "beta": null,
         "deprecated": null,
         "ok": false,
-        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/deepseek-ai/deepseek-v4-flash-0731 is not available on the Workers Free plan: Model @cf/deepseek-ai/deepseek-v4-flash-0731 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (51e4a",
-        "ms": 95
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/deepseek-ai/deepseek-v4-flash-0731 is not available on the Workers Free plan: Model @cf/deepseek-ai/deepseek-v4-flash-0731 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (e7813",
+        "ms": 133
       },
       {
         "id": "@cf/deepseek-ai/deepseek-v4-pro-0813",
@@ -658,8 +375,8 @@
         "beta": null,
         "deprecated": null,
         "ok": false,
-        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/deepseek-ai/deepseek-v4-pro-0813 is not available on the Workers Free plan: Model @cf/deepseek-ai/deepseek-v4-pro-0813 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (704983c6-",
-        "ms": 570
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/deepseek-ai/deepseek-v4-pro-0813 is not available on the Workers Free plan: Model @cf/deepseek-ai/deepseek-v4-pro-0813 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (11707174-",
+        "ms": 144
       },
       {
         "id": "@cf/google/gemma-2b-it-lora",
@@ -669,7 +386,7 @@
         "deprecated": null,
         "ok": true,
         "reply": "OK, I am ready to assist you with any questions or tasks you may have. How can I",
-        "ms": 2328
+        "ms": 936
       },
       {
         "id": "@cf/google/gemma-4-26b-a4b-it",
@@ -690,7 +407,7 @@
         "deprecated": null,
         "ok": true,
         "reply": "",
-        "ms": 779
+        "ms": 519
       },
       {
         "id": "@cf/google/gemma-7b-it-lora",
@@ -699,8 +416,8 @@
         "beta": "true",
         "deprecated": null,
         "ok": true,
-        "reply": "OK\n\nSure, here is your reply:\n\n**OK**\n\nIs there anything else I can help you wit",
-        "ms": 2058
+        "reply": "OK\n\nSure, I have replied with \"OK.\" Please let me know if you have any further r",
+        "ms": 2149
       },
       {
         "id": "@cf/ibm-granite/granite-4.0-h-micro",
@@ -721,7 +438,7 @@
         "deprecated": null,
         "ok": true,
         "reply": "OK",
-        "ms": 592
+        "ms": 397
       },
       {
         "id": "@cf/meta-llama/llama-2-7b-chat-hf-lora",
@@ -731,7 +448,7 @@
         "deprecated": null,
         "ok": true,
         "reply": "",
-        "ms": 4099
+        "ms": 4223
       },
       {
         "id": "@cf/meta/llama-3.1-8b-instruct-fp8",
@@ -752,7 +469,7 @@
         "deprecated": null,
         "ok": true,
         "reply": "OK",
-        "ms": 346
+        "ms": 350
       },
       {
         "id": "@cf/meta/llama-3.2-11b-vision-instruct",
@@ -773,7 +490,7 @@
         "deprecated": null,
         "ok": false,
         "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model Agreement: Prior to using this model, you must submit the prompt 'agree'. By submitting \u2018agree\u2019, you  hereby agree to the llama-3.2-11b-vision-instruct Community License https://github.com/meta-llama/llama-models/blob/main/models/llama3_2/LICENSE and Acceptable ",
-        "ms": 162
+        "ms": 265
       },
       {
         "id": "@cf/meta/llama-3.2-1b-instruct",
@@ -794,7 +511,7 @@
         "deprecated": null,
         "ok": true,
         "reply": "OK",
-        "ms": 317
+        "ms": 279
       },
       {
         "id": "@cf/meta/llama-3.2-3b-instruct",
@@ -815,7 +532,7 @@
         "deprecated": null,
         "ok": true,
         "reply": "OK",
-        "ms": 253
+        "ms": 238
       },
       {
         "id": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
@@ -836,7 +553,7 @@
         "deprecated": null,
         "ok": true,
         "reply": "OK",
-        "ms": 529
+        "ms": 406
       },
       {
         "id": "@cf/meta/llama-4-scout-17b-16e-instruct",
@@ -857,7 +574,7 @@
         "deprecated": null,
         "ok": true,
         "reply": "OK",
-        "ms": 252
+        "ms": 479
       },
       {
         "id": "@cf/meta/llama-guard-3-8b",
@@ -886,7 +603,7 @@
         "deprecated": null,
         "ok": true,
         "reply": " OK. I'm here to help answer any questions you might have or provide information",
-        "ms": 4246
+        "ms": 4007
       },
       {
         "id": "@cf/mistralai/mistral-small-3.1-24b-instruct",
@@ -907,7 +624,7 @@
         "deprecated": null,
         "ok": true,
         "reply": "OK",
-        "ms": 248
+        "ms": 482
       },
       {
         "id": "@cf/moonshotai/kimi-k2.6",
@@ -932,8 +649,8 @@
         "beta": null,
         "deprecated": null,
         "ok": false,
-        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/moonshotai/kimi-k2.6 is not available on the Workers Free plan: Model @cf/moonshotai/kimi-k2.6 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (f4264777-b19f-4659-8546-4da2fce8e",
-        "ms": 92
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/moonshotai/kimi-k2.6 is not available on the Workers Free plan: Model @cf/moonshotai/kimi-k2.6 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (ef606a64-b16c-4d1b-80eb-dc0a797b6",
+        "ms": 102
       },
       {
         "id": "@cf/moonshotai/kimi-k2.7-code",
@@ -958,8 +675,8 @@
         "beta": null,
         "deprecated": null,
         "ok": false,
-        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/moonshotai/kimi-k2.7-code is not available on the Workers Free plan: Model @cf/moonshotai/kimi-k2.7-code is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (8f3a85c4-48b7-473e-8fab",
-        "ms": 687
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/moonshotai/kimi-k2.7-code is not available on the Workers Free plan: Model @cf/moonshotai/kimi-k2.7-code is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (f8d0e823-36ef-4411-b3f3",
+        "ms": 143
       },
       {
         "id": "@cf/nvidia/nemotron-3-120b-a12b",
@@ -980,7 +697,7 @@
         "deprecated": null,
         "ok": true,
         "reply": "\n\nOK",
-        "ms": 510
+        "ms": 772
       },
       {
         "id": "@cf/openai/gpt-oss-120b",
@@ -1001,7 +718,7 @@
         "deprecated": null,
         "ok": true,
         "reply": "OK",
-        "ms": 1280
+        "ms": 1027
       },
       {
         "id": "@cf/openai/gpt-oss-20b",
@@ -1022,7 +739,7 @@
         "deprecated": null,
         "ok": true,
         "reply": "OK",
-        "ms": 429
+        "ms": 507
       },
       {
         "id": "@cf/qwen/qwen2.5-coder-32b-instruct",
@@ -1043,7 +760,7 @@
         "deprecated": null,
         "ok": true,
         "reply": "OK",
-        "ms": 251
+        "ms": 498
       },
       {
         "id": "@cf/qwen/qwen3-30b-a3b-fp8",
@@ -1064,7 +781,7 @@
         "deprecated": null,
         "ok": true,
         "reply": "",
-        "ms": 403
+        "ms": 576
       },
       {
         "id": "@cf/qwen/qwen3.8-27b",
@@ -1090,7 +807,7 @@
         "deprecated": null,
         "ok": true,
         "reply": "\n\nOK",
-        "ms": 722
+        "ms": 916
       },
       {
         "id": "@cf/qwen/qwq-32b",
@@ -1111,7 +828,7 @@
         "deprecated": null,
         "ok": true,
         "reply": "Okay, the user wants me to reply with exactly \"OK\". Let me make sure I understan",
-        "ms": 1985
+        "ms": 2132
       },
       {
         "id": "@cf/zai-org/glm-4.7-flash",
@@ -1132,7 +849,7 @@
         "deprecated": null,
         "ok": true,
         "reply": "OK",
-        "ms": 526
+        "ms": 988
       },
       {
         "id": "@cf/zai-org/glm-5.2",
@@ -1157,8 +874,8 @@
         "beta": null,
         "deprecated": null,
         "ok": false,
-        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/zai-org/glm-5.2 is not available on the Workers Free plan: Model @cf/zai-org/glm-5.2 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (46aeadb1-dd46-4be5-8319-2316f88c3cf3)\",\"cod",
-        "ms": 81
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/zai-org/glm-5.2 is not available on the Workers Free plan: Model @cf/zai-org/glm-5.2 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (6865f358-80f3-42f3-9fcd-431357bdcb53)\",\"cod",
+        "ms": 169
       },
       {
         "id": "@cf/zai-org/glm-5.3",
@@ -1183,8 +900,8 @@
         "beta": null,
         "deprecated": null,
         "ok": false,
-        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/zai-org/glm-5.3 is not available on the Workers Free plan: Model @cf/zai-org/glm-5.3 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (252c69fd-a791-4d05-97f6-7860bf52ead8)\",\"cod",
-        "ms": 75
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/zai-org/glm-5.3 is not available on the Workers Free plan: Model @cf/zai-org/glm-5.3 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (72263733-25d0-4abb-9ef1-d4765a71054b)\",\"cod",
+        "ms": 96
       },
       {
         "id": "@cf/zai-org/glm-5.3-flash",
@@ -1209,8 +926,8 @@
         "beta": null,
         "deprecated": null,
         "ok": false,
-        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/zai-org/glm-5.3-flash is not available on the Workers Free plan: Model @cf/zai-org/glm-5.3-flash is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (23ecea64-5cea-49d3-812f-eb9e688",
-        "ms": 75
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/zai-org/glm-5.3-flash is not available on the Workers Free plan: Model @cf/zai-org/glm-5.3-flash is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (55d2203c-3257-489e-9f70-daf66b5",
+        "ms": 101
       }
     ]
   }

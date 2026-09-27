@@ -1,14 +1,11 @@
 name: probe-models
 
-# Manual (or on a claude/** push that edits the probe): lists and test-calls
+# Manual: lists and test-calls
 # every model the provider keys can reach, then
 # commits data/probe.json. Run it from the Actions tab when choosing models.
 # Probing openrouter spends ~20 of its 50 free requests for that day, so it is
 # left out by default.
 on:
-  push:
-    branches: ["claude/**"]
-    paths: ["tools/probe_models.py"]
   workflow_dispatch:
     inputs:
       providers:
