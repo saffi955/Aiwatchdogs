@@ -201,6 +201,9 @@ def _write_dashboard_history(history: dict, watched: set[str] | None = None) -> 
                 "latency_ms_avg": r.get("latency_ms_avg"),
                 "alerted": r.get("alerted", False),
                 "calibrating": r.get("calibrating", False),
+                "breach": r.get("breach", False),
+                "baseline_avg": r.get("baseline_avg"),
+                "error_count": r.get("error_count", 0),
             }
             for r in runs
         ]

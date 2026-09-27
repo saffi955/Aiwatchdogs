@@ -80,66 +80,128 @@
     font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
     line-height: 1.45;
   }
-  main { max-width: 1080px; margin: 0 auto; padding: 24px 20px 64px; }
+  main { max-width: 1240px; margin: 0 auto; padding: 24px 16px 64px; }
   h1 { font-size: 1.35rem; margin: 0 0 2px; }
-  .sub { color: var(--text-secondary); font-size: 0.9rem; margin: 0 0 24px; }
+  .sub { color: var(--text-secondary); font-size: 0.9rem; margin: 0 0 20px; }
   .card {
     background: var(--surface-1);
     border: 1px solid var(--border);
     border-radius: 10px;
-    padding: 18px 20px;
-    margin-bottom: 24px;
+    padding: 16px 18px;
+    margin-bottom: 20px;
+    min-width: 0;
   }
-  .card h2 { font-size: 1rem; margin: 0 0 12px; font-weight: 600; }
-  .chart-wrap { position: relative; height: 360px; }
+  .card h2 { font-size: 1rem; margin: 0 0 2px; font-weight: 600; }
+  .card .hint { color: var(--text-muted); font-size: 0.8rem; margin: 0 0 12px; }
+  .chart-wrap { position: relative; height: 260px; }
   .empty { color: var(--text-muted); padding: 32px 0; text-align: center; }
 
-  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-  th, td {
-    text-align: left;
-    padding: 8px 10px;
-    border-bottom: 1px solid var(--grid);
-    white-space: nowrap;
+  /* Filter row: one row, above everything it scopes. */
+  .filters { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; margin: 0 0 18px; }
+  .filters .label { color: var(--text-muted); font-size: 0.8rem; margin-right: 6px; }
+  .seg { display: inline-flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .seg button {
+    font: inherit; font-size: 0.82rem; padding: 5px 11px; border: 0; cursor: pointer;
+    background: transparent; color: var(--text-secondary);
   }
-  th { color: var(--text-muted); font-weight: 500; }
-  td.num { font-variant-numeric: tabular-nums; }
-  .dot {
-    display: inline-block; width: 10px; height: 10px; border-radius: 50%;
-    margin-right: 7px; vertical-align: baseline;
+  .seg button + button { border-left: 1px solid var(--border); }
+  .seg button[aria-pressed="true"] { background: var(--text-primary); color: var(--page); font-weight: 600; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 0 20px; }
+  @media (max-width: 480px) { .grid { grid-template-columns: 1fr; } }
+  .marker-note { color: var(--text-muted); font-size: 0.78rem; margin: -6px 0 18px; }
+  .marker-note .dash { display: inline-block; width: 18px; border-top: 2px dashed var(--text-secondary); vertical-align: middle; margin-right: 6px; }
+
+  .table-head { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: baseline; justify-content: space-between; }
+  select {
+    font: inherit; font-size: 0.85rem; padding: 5px 8px; border-radius: 8px;
+    border: 1px solid var(--border); background: var(--surface-1); color: var(--text-primary);
   }
+  .scroll { overflow-x: auto; margin-top: 10px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+  th, td { text-align: left; padding: 7px 6px; border-bottom: 1px solid var(--grid); white-space: nowrap; }
+  th { color: var(--text-muted); font-weight: 500; vertical-align: bottom; }
+  th abbr { text-decoration: none; border-bottom: 1px dotted var(--text-muted); cursor: help; }
+  td.num, th.num { font-variant-numeric: tabular-nums; text-align: right; }
+  td.low { color: var(--critical); font-weight: 600; }
+  tr.group td { color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: .04em; padding-top: 14px; }
+  .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 7px; }
+  .delta { color: var(--text-muted); font-size: 0.78rem; }
   .status { font-weight: 600; }
-  .status.alert    { color: var(--critical); }
-  .status.ok       { color: var(--good-text); }
-  .status.calib    { color: var(--text-muted); font-weight: 400; }
-  .legend-note { color: var(--text-muted); font-size: 0.78rem; margin-top: 10px; }
+  .status.alert  { color: var(--critical); }
+  .status.breach { color: var(--critical); font-weight: 500; }
+  .status.ok     { color: var(--good-text); }
+  .status.calib, .status.none { color: var(--text-muted); font-weight: 400; }
+
+  .guide { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px 24px; margin: 0; font-size: 0.84rem; }
+  .guide dt { font-weight: 600; }
+  .guide dd { margin: 0 0 4px; color: var(--text-secondary); }
 </style>
 </head>
 <body>
 <main>
   <h1>Model Drift Watchdog</h1>
-  <p class="sub">Fingerprints model behavior on a fixed test suite every 6 hours and flags silent model changes.
-    <span id="generated-at"></span></p>
+  <p class="sub">Sends the same 38 machine-checked prompts to every model every 6 hours and flags when a
+    provider silently changes the model behind a name. <span id="generated-at"></span></p>
+
+  <div class="filters" role="group" aria-label="Filters">
+    <span><span class="label">Time range</span>
+      <span class="seg" id="range">
+        <button data-days="7">7 days</button><button data-days="30" aria-pressed="true">30 days</button><button data-days="0">All</button>
+      </span></span>
+    <span><span class="label">Provider</span>
+      <span class="seg" id="provider"></span></span>
+  </div>
+
+  <div id="charts" class="grid"><p class="empty">Loading…</p></div>
+  <p class="marker-note" id="marker-note" hidden></p>
 
   <section class="card">
-    <h2>Drift score over time (0–100, higher is stable)</h2>
-    <div class="chart-wrap"><canvas id="drift-chart" role="img"
-      aria-label="Line chart of drift score per model over time"></canvas></div>
-    <p class="legend-note">⛔ red markers = alert fired (2+ consecutive breaching runs). Hover any point for per-category scores.</p>
+    <div class="table-head">
+      <div>
+        <h2>Results per model</h2>
+        <p class="hint">Pass rate (%) in each test category for the selected run. Hover a column name for what it tests.</p>
+      </div>
+      <label><span class="label">Run</span> <select id="run-select" aria-label="Choose a run"></select></label>
+    </div>
+    <div class="scroll" id="table-wrap"></div>
   </section>
 
   <section class="card">
-    <h2>Latest run — per-category pass rates</h2>
-    <div id="table-wrap"><p class="empty">Loading…</p></div>
+    <h2>How to read this</h2>
+    <p class="hint">Every answer is checked by plain code (exact match, JSON schema, regex, numbers), not by another AI.</p>
+    <dl class="guide" id="guide"></dl>
   </section>
 </main>
 
 <script>
+// Fixed categorical order (never cycled): each provider chart has at most 6 models.
 const SERIES_VARS = ["--series-1","--series-2","--series-3","--series-4",
                      "--series-5","--series-6","--series-7","--series-8"];
+
+// Things that changed the watchdog itself; drawn as dashed vertical lines.
+const EVENTS = [
+  { at: "2026-09-27T00:00:00Z", label: "Model lineup updated",
+    note: "Model lineup updated on 27 Sep 2026: 14 models across Google Gemini, Groq, Cloudflare and OpenRouter. Lines that start here are new models." },
+];
+
+const PROVIDERS = [
+  { key: "gemini",     label: "Google Gemini", match: n => /^(gemini|gemma)/.test(n) },
+  { key: "groq",       label: "Groq",          match: n => n.startsWith("groq-") },
+  { key: "cloudflare", label: "Cloudflare Workers AI", match: n => n.startsWith("cloudflare-") },
+  { key: "openrouter", label: "OpenRouter",    match: n => n.startsWith("openrouter-") },
+  { key: "other",      label: "Other",         match: () => true },
+];
+
 const CATEGORIES = [
-  "format_compliance","instruction_following","classification_stability",
-  "math_reasoning","extraction_accuracy","refusal_boundary",
-  "verbosity_fingerprint","edge_case_handling",
+  ["format_compliance",        "Format",      "Returns exactly the structure asked for (JSON, CSV, lists) so parsers don't break."],
+  ["instruction_following",    "Instructions","Obeys explicit constraints such as word limits, casing and 'answer only'."],
+  ["classification_stability", "Labels",      "Gives the same sentiment / moderation / routing label for fixed inputs."],
+  ["math_reasoning",           "Math",        "Gets arithmetic and short word problems right; a cheaper swapped-in model slips here first."],
+  ["extraction_accuracy",      "Extraction",  "Pulls the correct fields (names, dates, amounts) out of text."],
+  ["refusal_boundary",         "Refusals",    "Answers legitimate requests instead of refusing; tighter safety tuning shows up here."],
+  ["verbosity_fingerprint",    "Length",      "Keeps its usual reply length; a sudden shift is the classic sign of a model swap."],
+  ["edge_case_handling",       "Edge cases",  "Handles unicode, whitespace and odd inputs; catches tokenizer changes."],
 ];
 
 function cssVar(name) {
@@ -150,158 +212,312 @@ function fmtTime(iso) {
   return isNaN(d) ? iso : d.toLocaleString(undefined,
     { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
 }
+function el(tag, attrs = {}, text) {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === "class") e.className = v; else if (k === "style") e.style.cssText = v; else e.setAttribute(k, v);
+  }
+  if (text != null) e.textContent = text;
+  return e;
+}
+// A run where every prompt failed at the API has no score; show a gap, not 0.
+function dead(run) { return run && run.error_count > 0 && run.drift_score === 0; }
+function providerOf(name) { return PROVIDERS.find(p => p.match(name)).key; }
 
-let chart = null;
+const state = { days: 30, provider: "all", run: null };
+let DATA = null, COLOR = {}, charts = [];
+
+// Dashed vertical line at each EVENT, placed between the last run before it
+// and the first run after it.
+const eventLines = {
+  id: "eventLines",
+  afterDatasetsDraw(chart) {
+    const stamps = chart.$stamps || [];
+    const { ctx, chartArea: a, scales: { x } } = chart;
+    for (const ev of EVENTS) {
+      const t = Date.parse(ev.at);
+      const i = stamps.findIndex(s => Date.parse(s) >= t);
+      if (i < 0) continue;
+      const px = i === 0 ? x.getPixelForValue(0) : (x.getPixelForValue(i - 1) + x.getPixelForValue(i)) / 2;
+      ctx.save();
+      ctx.strokeStyle = cssVar("--text-secondary");
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([5, 4]);
+      ctx.beginPath(); ctx.moveTo(px, a.top); ctx.lineTo(px, a.bottom); ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = cssVar("--text-secondary");
+      ctx.font = "11px system-ui, sans-serif";
+      const w = ctx.measureText(ev.label).width;
+      const lx = px + 6 + w > a.right ? px - 6 - w : px + 6;
+      ctx.fillText(ev.label, lx, a.bottom - 8);
+      ctx.restore();
+    }
+  },
+};
 
 async function load() {
   if (typeof Chart === "undefined") {
-    document.getElementById("table-wrap").innerHTML =
+    document.getElementById("charts").innerHTML =
       '<p class="empty">Chart.js failed to load (vendor/chart.umd.min.js missing).</p>';
     return;
   }
-  let data;
   try {
     const resp = await fetch("history.json", { cache: "no-store" });
     if (!resp.ok) throw new Error(resp.status);
-    data = await resp.json();
+    DATA = await resp.json();
   } catch (e) {
-    document.getElementById("table-wrap").innerHTML =
+    document.getElementById("charts").innerHTML =
       '<p class="empty">No history yet — the first watchdog run will populate this page.</p>';
     return;
   }
   document.getElementById("generated-at").textContent =
-    data.generated_at ? "Last updated " + fmtTime(data.generated_at) + " UTC." : "";
-  render(data);
+    DATA.generated_at ? "Last updated " + fmtTime(DATA.generated_at) + "." : "";
+
+  // Color follows the model: fixed order within its provider, never by rank.
+  const names = Object.keys(DATA.models || {});
+  const perProv = {};
+  for (const n of names) {
+    const p = providerOf(n);
+    perProv[p] = (perProv[p] || 0) + 1;
+    COLOR[n] = SERIES_VARS[(perProv[p] - 1) % SERIES_VARS.length];
+  }
+  buildProviderFilter(names);
+  buildGuide();
+  bindFilters();
+  renderAll();
 }
 
-function render(data) {
-  // Model order is fixed (insertion order of history) so colors never reshuffle.
-  const names = Object.keys(data.models || {});
-  if (!names.length) {
-    document.getElementById("table-wrap").innerHTML =
-      '<p class="empty">No models in history yet.</p>';
-    return;
+function buildProviderFilter(names) {
+  const seg = document.getElementById("provider");
+  seg.replaceChildren();
+  const present = PROVIDERS.filter(p => names.some(n => providerOf(n) === p.key));
+  for (const p of [{ key: "all", label: "All" }, ...present]) {
+    const b = el("button", { "data-provider": p.key, "aria-pressed": String(p.key === state.provider) },
+                 p.key === "cloudflare" ? "Cloudflare" : p.label);
+    seg.appendChild(b);
   }
+}
 
-  // Union of timestamps across models, sorted, as the category axis.
-  const stamps = [...new Set(names.flatMap(n => data.models[n].map(r => r.run_at)))].sort();
-  const stampIdx = new Map(stamps.map((s, i) => [s, i]));
-  const critical = cssVar("--critical");
+function bindFilters() {
+  document.getElementById("range").onclick = e => {
+    const b = e.target.closest("button"); if (!b) return;
+    state.days = Number(b.dataset.days); state.run = null;
+    for (const x of e.currentTarget.children) x.setAttribute("aria-pressed", String(x === b));
+    renderAll();
+  };
+  document.getElementById("provider").onclick = e => {
+    const b = e.target.closest("button"); if (!b) return;
+    state.provider = b.dataset.provider;
+    for (const x of e.currentTarget.children) x.setAttribute("aria-pressed", String(x === b));
+    renderAll();
+  };
+  document.getElementById("run-select").onchange = e => { state.run = e.target.value; renderTable(); };
+}
 
-  const datasets = names.map((name, i) => {
-    const color = cssVar(SERIES_VARS[i % SERIES_VARS.length]);
-    const points = new Array(stamps.length).fill(null);
-    const meta = new Array(stamps.length).fill(null);
-    for (const run of data.models[name]) {
-      const idx = stampIdx.get(run.run_at);
-      points[idx] = run.drift_score;
-      meta[idx] = run;
-    }
-    return {
-      label: name,
-      data: points,
-      _meta: meta,
-      borderColor: color,
-      backgroundColor: color,
-      borderWidth: 2,
-      spanGaps: true,
-      pointRadius: ctx => (meta[ctx.dataIndex] && meta[ctx.dataIndex].alerted) ? 5 : 2.5,
-      pointHoverRadius: 8,
-      pointBackgroundColor: ctx =>
-        (meta[ctx.dataIndex] && meta[ctx.dataIndex].alerted) ? critical : color,
-      pointBorderColor: ctx =>
-        (meta[ctx.dataIndex] && meta[ctx.dataIndex].alerted) ? critical : color,
-      tension: 0.15,
-    };
-  });
+function visibleNames() {
+  return Object.keys(DATA.models).filter(n => state.provider === "all" || providerOf(n) === state.provider);
+}
+function inRange(iso) {
+  if (!state.days) return true;
+  const newest = Date.parse(DATA.generated_at || new Date().toISOString());
+  return Date.parse(iso) >= newest - state.days * 86400e3;
+}
 
-  const ink = cssVar("--text-secondary");
-  const muted = cssVar("--text-muted");
-  const grid = cssVar("--grid");
+function renderAll() {
+  renderCharts();
+  renderRunSelect();
+  renderTable();
+}
 
-  if (chart) chart.destroy();
-  chart = new Chart(document.getElementById("drift-chart"), {
-    type: "line",
-    data: { labels: stamps.map(fmtTime), datasets },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      interaction: { mode: "nearest", intersect: false },
-      scales: {
-        y: {
-          min: 0, max: 100,
-          grid: { color: grid, drawTicks: false },
-          border: { color: cssVar("--baseline") },
-          ticks: { color: muted, font: { size: 11 } },
+function renderCharts() {
+  for (const c of charts) c.destroy();
+  charts = [];
+  const wrap = document.getElementById("charts");
+  wrap.replaceChildren();
+  const names = visibleNames();
+  const ink = cssVar("--text-secondary"), muted = cssVar("--text-muted");
+  const grid = cssVar("--grid"), base = cssVar("--baseline"), critical = cssVar("--critical");
+  let markerShown = false;
+
+  for (const prov of PROVIDERS) {
+    const models = names.filter(n => providerOf(n) === prov.key);
+    if (!models.length) continue;
+    const stamps = [...new Set(models.flatMap(n => DATA.models[n].map(r => r.run_at)))]
+      .filter(inRange).sort();
+    const card = el("section", { class: "card" });
+    card.appendChild(el("h2", {}, prov.label));
+    card.appendChild(el("p", { class: "hint" },
+      `${models.length} model${models.length > 1 ? "s" : ""} · drift score 0–100, higher = behaving like its own baseline`));
+    const cw = el("div", { class: "chart-wrap" });
+    const canvas = el("canvas", { role: "img", "aria-label": `Drift score over time for ${prov.label} models` });
+    cw.appendChild(canvas); card.appendChild(cw); wrap.appendChild(card);
+    if (!stamps.length) { cw.replaceChildren(el("p", { class: "empty" }, "No runs in this time range.")); continue; }
+    if (EVENTS.some(ev => stamps.some(s => Date.parse(s) >= Date.parse(ev.at)) && Date.parse(stamps[0]) < Date.parse(ev.at))) markerShown = true;
+
+    const idx = new Map(stamps.map((s, i) => [s, i]));
+    const datasets = models.map(name => {
+      const color = cssVar(COLOR[name]);
+      const points = new Array(stamps.length).fill(null);
+      const meta = new Array(stamps.length).fill(null);
+      for (const run of DATA.models[name]) {
+        if (!idx.has(run.run_at)) continue;
+        points[idx.get(run.run_at)] = dead(run) ? null : run.drift_score;
+        meta[idx.get(run.run_at)] = run;
+      }
+      const isAlert = c => meta[c.dataIndex] && meta[c.dataIndex].alerted;
+      return {
+        label: name, data: points, _meta: meta,
+        borderColor: color, backgroundColor: color, borderWidth: 2, spanGaps: true, tension: 0.2,
+        // Clean lines: points only where an alert fired (or a lone first point).
+        pointRadius: c => isAlert(c) ? 5 : (points.filter(v => v != null).length === 1 ? 4 : 0),
+        pointHoverRadius: 6,
+        pointBackgroundColor: c => isAlert(c) ? critical : color,
+        pointBorderColor: c => isAlert(c) ? critical : color,
+      };
+    });
+
+    const chart = new Chart(canvas, {
+      type: "line",
+      data: { labels: stamps.map(fmtTime), datasets },
+      plugins: [eventLines],
+      options: {
+        responsive: true, maintainAspectRatio: false, animation: false,
+        interaction: { mode: "index", intersect: false },
+        scales: {
+          y: { min: 0, max: 100, grid: { color: grid, drawTicks: false }, border: { display: false },
+               ticks: { color: muted, font: { size: 11 }, stepSize: 25, padding: 6 } },
+          x: { grid: { display: false }, border: { color: base },
+               ticks: { color: muted, font: { size: 11 }, maxTicksLimit: 6, maxRotation: 0, autoSkipPadding: 16 } },
         },
-        x: {
-          grid: { display: false },
-          border: { color: cssVar("--baseline") },
-          ticks: { color: muted, font: { size: 11 }, maxTicksLimit: 10, maxRotation: 0 },
-        },
-      },
-      plugins: {
-        legend: {
-          labels: { color: ink, usePointStyle: true, pointStyle: "circle", boxWidth: 8 },
-        },
-        tooltip: {
-          callbacks: {
-            label: (ctx) => {
-              const run = ctx.dataset._meta[ctx.dataIndex];
-              if (!run) return `${ctx.dataset.label}: ${ctx.formattedValue}`;
-              const lines = [`${ctx.dataset.label}: drift ${run.drift_score}`];
-              if (run.alerted) lines.push("⛔ ALERT fired");
-              if (run.calibrating) lines.push("(calibrating)");
-              for (const c of CATEGORIES) {
-                if (run.scores && c in run.scores) lines.push(`  ${c}: ${run.scores[c]}`);
-              }
-              if (run.verbosity_z != null) lines.push(`  verbosity z: ${run.verbosity_z}`);
-              if (run.latency_ms_avg != null) lines.push(`  latency: ${run.latency_ms_avg} ms`);
-              return lines;
+        plugins: {
+          legend: { position: "bottom",
+                    labels: { color: ink, usePointStyle: true, pointStyle: "line", boxWidth: 18, font: { size: 11 } } },
+          tooltip: {
+            itemSort: (a, b) => (b.raw ?? -1) - (a.raw ?? -1),
+            filter: item => item.raw != null,
+            callbacks: {
+              label: ctx => {
+                const run = ctx.dataset._meta[ctx.dataIndex];
+                let s = `${ctx.formattedValue}  ${ctx.dataset.label}`;
+                if (run && run.alerted) s += "  ⛔ alert";
+                else if (run && run.error_count) s += `  (${run.error_count} API errors, not counted)`;
+                return s;
+              },
             },
           },
         },
       },
-    },
-  });
-
-  renderTable(names, data);
+    });
+    chart.$stamps = stamps;
+    chart.update("none");
+    charts.push(chart);
+  }
+  const note = document.getElementById("marker-note");
+  note.hidden = !markerShown;
+  note.replaceChildren(el("span", { class: "dash" }), document.createTextNode(EVENTS[0].note));
 }
 
-function renderTable(names, data) {
-  const short = {
-    format_compliance: "format", instruction_following: "instruct",
-    classification_stability: "classify", math_reasoning: "math",
-    extraction_accuracy: "extract", refusal_boundary: "refusal",
-    verbosity_fingerprint: "verbosity", edge_case_handling: "edge",
-  };
-  let html = "<table><thead><tr><th>Model</th>";
-  for (const c of CATEGORIES) html += `<th>${short[c]}</th>`;
-  html += "<th>drift</th><th>latency</th><th>status</th></tr></thead><tbody>";
+function allStampsNewestFirst() {
+  return [...new Set(visibleNames().flatMap(n => DATA.models[n].map(r => r.run_at)))]
+    .filter(inRange).sort().reverse();
+}
 
-  names.forEach((name, i) => {
-    const runs = data.models[name];
-    const last = runs[runs.length - 1];
-    const color = cssVar(SERIES_VARS[i % SERIES_VARS.length]);
-    html += `<tr><td><span class="dot" style="background:${color}"></span>${name}</td>`;
-    for (const c of CATEGORIES) {
-      const v = last.scores && c in last.scores ? last.scores[c] : "–";
-      html += `<td class="num">${v}</td>`;
+function renderRunSelect() {
+  const sel = document.getElementById("run-select");
+  const stamps = allStampsNewestFirst();
+  if (!state.run || !stamps.includes(state.run)) state.run = stamps[0] || null;
+  sel.replaceChildren(...stamps.map((s, i) =>
+    el("option", { value: s }, (i === 0 ? "Latest · " : "") + fmtTime(s))));
+  if (state.run) sel.value = state.run;
+}
+
+function renderTable() {
+  const wrap = document.getElementById("table-wrap");
+  if (!state.run) { wrap.replaceChildren(el("p", { class: "empty" }, "No runs in this time range.")); return; }
+  const table = el("table");
+  const thead = el("thead"), hr = el("tr");
+  hr.appendChild(el("th", {}, "Model"));
+  const drift = el("th", { class: "num" }); drift.appendChild(el("abbr", { title: "Weighted score across categories, compared with this model's own 14-day baseline. 100 = fully consistent." }, "Drift score"));
+  hr.appendChild(drift);
+  hr.appendChild(el("th", { class: "num" }, "vs prev."));
+  for (const [, label, desc] of CATEGORIES) {
+    const th = el("th", { class: "num" }); th.appendChild(el("abbr", { title: desc }, label)); hr.appendChild(th);
+  }
+  const errTh = el("th", { class: "num" }); errTh.appendChild(el("abbr", { title: "Prompts that failed at the API (rate limit, outage). Excluded from scoring: an API error is never drift." }, "API errors"));
+  hr.appendChild(errTh);
+  hr.appendChild(el("th", { class: "num" }, "Avg latency"));
+  hr.appendChild(el("th", {}, "Status"));
+  thead.appendChild(hr); table.appendChild(thead);
+
+  const tbody = el("tbody");
+  const names = visibleNames();
+  for (const prov of PROVIDERS) {
+    const models = names.filter(n => providerOf(n) === prov.key);
+    if (!models.length) continue;
+    const g = el("tr", { class: "group" }); g.appendChild(el("td", { colspan: String(CATEGORIES.length + 6) }, prov.label));
+    tbody.appendChild(g);
+    for (const name of models) {
+      const runs = DATA.models[name];
+      const i = runs.findIndex(r => r.run_at === state.run);
+      const tr = el("tr");
+      const tdName = el("td");
+      tdName.appendChild(el("span", { class: "dot", style: `background:${cssVar(COLOR[name])}` }));
+      tdName.appendChild(document.createTextNode(name));
+      tr.appendChild(tdName);
+      if (i < 0) {
+        tr.appendChild(el("td", { class: "num" }, "–"));
+        const td = el("td", { colspan: String(CATEGORIES.length + 4), class: "status none" }, "not in this run (model added later, or skipped)");
+        tr.appendChild(td); tbody.appendChild(tr); continue;
+      }
+      const run = runs[i];
+      const prev = runs.slice(0, i).reverse().find(r => !dead(r));
+      if (dead(run)) {
+        tr.appendChild(el("td", { class: "num" }, "–"));
+        tr.appendChild(el("td", { colspan: String(CATEGORIES.length + 4), class: "status none" },
+          `every prompt failed at the API (${run.error_count} errors), so this run has no score`));
+        tbody.appendChild(tr); continue;
+      }
+      tr.appendChild(el("td", { class: "num" + (run.drift_score < 50 ? " low" : "") }, run.drift_score));
+      const d = prev ? Math.round((run.drift_score - prev.drift_score) * 10) / 10 : null;
+      tr.appendChild(el("td", { class: "num delta" }, d == null ? "first run" : (d > 0 ? "+" : d < 0 ? "−" : "±") + Math.abs(d)));
+      for (const [key] of CATEGORIES) {
+        const v = run.scores && key in run.scores ? run.scores[key] : null;
+        tr.appendChild(el("td", { class: "num" + (v != null && v < 50 ? " low" : "") }, v == null ? "–" : Math.round(v)));
+      }
+      tr.appendChild(el("td", { class: "num" }, run.error_count ?? "–"));
+      tr.appendChild(el("td", { class: "num" }, run.latency_ms_avg != null ? (run.latency_ms_avg / 1000).toFixed(1) + " s" : "–"));
+      const st = el("td");
+      st.appendChild(run.alerted ? el("span", { class: "status alert" }, "⛔ Alert: drifted")
+        : run.breach ? el("span", { class: "status breach" }, "▲ Below baseline (1 run)")
+        : run.calibrating ? el("span", { class: "status calib" }, "Calibrating (first 3 days)")
+        : el("span", { class: "status ok" }, "✓ Stable"));
+      tr.appendChild(st);
+      tbody.appendChild(tr);
     }
-    html += `<td class="num">${last.drift_score}</td>`;
-    html += `<td class="num">${last.latency_ms_avg ?? "–"} ms</td>`;
-    const status = last.alerted ? '<span class="status alert">⛔ alert</span>'
-      : last.calibrating ? '<span class="status calib">calibrating</span>'
-      : '<span class="status ok">✓ stable</span>';
-    html += `<td>${status}</td></tr>`;
-  });
-  html += "</tbody></table>";
-  document.getElementById("table-wrap").innerHTML = html;
+  }
+  table.appendChild(tbody);
+  wrap.replaceChildren(table);
+}
+
+function buildGuide() {
+  const dl = document.getElementById("guide");
+  const items = [
+    ["Drift score", "Weighted pass rate across the categories, judged against the model's own last 14 days. A score 15+ points below its baseline, or any category under 50%, is a breach."],
+    ["Alert", "Only after 2 breaching runs in a row, and never in a model's first 3 days, so one bad run never cries wolf."],
+    ["API errors", "Rate limits and outages are recorded but left out of the score. An error is never counted as drift."],
+    ...CATEGORIES.map(([, label, desc]) => [label, desc]),
+  ];
+  dl.replaceChildren();
+  for (const [t, d] of items) {
+    const pair = el("div");
+    pair.appendChild(el("dt", {}, t)); pair.appendChild(el("dd", {}, d));
+    dl.appendChild(pair);
+  }
 }
 
 load();
 // Re-render on OS theme change so chart colors re-step for the new surface.
-window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", load);
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => DATA && renderAll());
 </script>
 </body>
 </html>
