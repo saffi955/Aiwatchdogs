@@ -84,10 +84,19 @@ def _weighted_score(pass_rates: dict[str, float], weights: dict[str, float]) -> 
     return sum(pass_rates[c] * w for c, w in present.items()) / total_w
 
 
+def _dead(run: dict) -> bool:
+    """A run where every prompt failed at the API. It has no real score (its
+    stored 0s mean "no answer", not "bad answer"), so it must never feed the
+    baseline, the z-score samples or the calibration clock."""
+    return run.get("error_count", 0) > 0 and not run.get("scores")
+
+
 def _rolling_values(history: list[dict], key: str, baseline_days: int) -> list[float]:
     cutoff = _now() .timestamp() - baseline_days * 86400
     out = []
     for run in history:
+        if _dead(run):
+            continue
         ts = _parse(run.get("run_at"))
         if ts is None or ts.timestamp() >= cutoff:
             v = run.get(key)
@@ -109,6 +118,8 @@ def _zscore(value: float, sample: list[float]) -> float:
 def _distinct_days(history: list[dict]) -> int:
     days = set()
     for run in history:
+        if _dead(run):
+            continue
         ts = _parse(run.get("run_at"))
         if ts is not None:
             days.add(ts.date())
