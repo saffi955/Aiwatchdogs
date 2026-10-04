@@ -33,6 +33,7 @@ scoring:
   calibration_days: 3            # first N days: record only, never alert
   drift_drop_threshold: 15       # alert if score falls this far below baseline
   category_collapse_threshold: 50  # alert if any single category drops below this
+                                   # AND drift_drop_threshold below its own usual score
   consecutive_breaches: 2        # require N breaching runs in a row before alert
   verbosity_z_threshold: 2.0     # |z| beyond this applies a -5 penalty
   latency_z_threshold: 2.0       # z beyond this applies a -5 penalty

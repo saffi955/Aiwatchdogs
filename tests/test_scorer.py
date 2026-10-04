@@ -73,6 +73,19 @@ def test_category_collapse_two_breaches_alerts() -> None:
     print("category collapse / 2-breach alert gate: OK")
 
 
+def test_always_weak_category_is_not_drift() -> None:
+    # A model that has always scored 0 at math is weak, not drifting: no breach.
+    weak = {c: (0.0 if c == "math_reasoning" else 100.0) for c in ALL_CATS}
+    history = [{**hist_run(d, 85.0), "scores": weak, "breach_streak": 1} for d in (4, 3, 2, 1)]
+    s = score_run(make_results(failing={"math_reasoning"}), history, CFG, "m", "p")
+    assert s.breach is False and s.alerted is False, s
+    # The same model collapsing in a category it used to pass still breaches.
+    s2 = score_run(make_results(failing={"math_reasoning", "extraction_accuracy"}),
+                   history, CFG, "m", "p")
+    assert s2.breach is True
+    print("always-weak category is not drift: OK")
+
+
 def test_score_drop_alert() -> None:
     history = [hist_run(4, 100.0), hist_run(3, 100.0), hist_run(2, 100.0),
                {**hist_run(1, 100.0), "breach_streak": 1}]
@@ -97,6 +110,22 @@ def test_errors_are_not_drift() -> None:
     print("errors excluded from drift: OK")
 
 
+def test_failed_runs_not_in_baseline() -> None:
+    # A model whose key was dead for days, then came back: the all-error runs
+    # (stored as drift 0, no scores) must not drag its baseline down.
+    dead = {**hist_run(5, 0.0), "scores": {}, "error_count": 38,
+            "verbosity_avg_len": 0.0, "latency_ms_avg": 0.0}
+    history = [dead, dead, hist_run(3, 100.0), hist_run(2, 100.0), hist_run(1, 100.0)]
+    s = score_run(make_results(failing={"format_compliance"}), history, CFG, "m", "p")
+    assert s.baseline_avg == 100.0, s.baseline_avg
+    assert s.breach is True  # 75 is a real drop from 100, not from ~60
+    assert s.latency_z == 0.0 and s.verbosity_z == 0.0
+    # Only dead runs so far: still calibrating.
+    s2 = score_run(make_results(), [dead, dead, dead], CFG, "m", "p")
+    assert s2.calibrating is True and s2.baseline_avg is None
+    print("failed runs excluded from baseline: OK")
+
+
 def test_verbosity_penalty() -> None:
     # Realistic verbosity history (small run-to-run variance ~20 chars), then a
     # spike to 200 chars -> large z-score -> penalty. A zero-variance baseline
@@ -115,7 +144,9 @@ def test_verbosity_penalty() -> None:
 if __name__ == "__main__":
     test_clean_run_calibrating()
     test_category_collapse_two_breaches_alerts()
+    test_always_weak_category_is_not_drift()
     test_score_drop_alert()
     test_errors_are_not_drift()
+    test_failed_runs_not_in_baseline()
     test_verbosity_penalty()
     print("ALL SCORER CHECKS PASSED")
