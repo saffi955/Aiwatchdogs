@@ -73,6 +73,19 @@ def test_category_collapse_two_breaches_alerts() -> None:
     print("category collapse / 2-breach alert gate: OK")
 
 
+def test_always_weak_category_is_not_drift() -> None:
+    # A model that has always scored 0 at math is weak, not drifting: no breach.
+    weak = {c: (0.0 if c == "math_reasoning" else 100.0) for c in ALL_CATS}
+    history = [{**hist_run(d, 85.0), "scores": weak, "breach_streak": 1} for d in (4, 3, 2, 1)]
+    s = score_run(make_results(failing={"math_reasoning"}), history, CFG, "m", "p")
+    assert s.breach is False and s.alerted is False, s
+    # The same model collapsing in a category it used to pass still breaches.
+    s2 = score_run(make_results(failing={"math_reasoning", "extraction_accuracy"}),
+                   history, CFG, "m", "p")
+    assert s2.breach is True
+    print("always-weak category is not drift: OK")
+
+
 def test_score_drop_alert() -> None:
     history = [hist_run(4, 100.0), hist_run(3, 100.0), hist_run(2, 100.0),
                {**hist_run(1, 100.0), "breach_streak": 1}]
@@ -131,6 +144,7 @@ def test_verbosity_penalty() -> None:
 if __name__ == "__main__":
     test_clean_run_calibrating()
     test_category_collapse_two_breaches_alerts()
+    test_always_weak_category_is_not_drift()
     test_score_drop_alert()
     test_errors_are_not_drift()
     test_failed_runs_not_in_baseline()

@@ -504,7 +504,7 @@ function renderTable() {
 function buildGuide() {
   const dl = document.getElementById("guide");
   const items = [
-    ["Drift score", "Weighted pass rate across the categories, judged against the model's own last 14 days. A score 15+ points below its baseline, or any category under 50%, is a breach."],
+    ["Drift score", "Weighted pass rate across the categories, judged against the model's own last 14 days. A score 15+ points below its baseline, or a category under 50% that is also 15+ below its own usual score, is a breach."],
     ["Alert", "Only after 2 breaching runs in a row, and never in a model's first 3 days, so one bad run never cries wolf."],
     ["API errors", "Rate limits and outages are recorded but left out of the score. An error is never counted as drift."],
     ...CATEGORIES.map(([, label, desc]) => [label, desc]),

@@ -5,7 +5,8 @@ Faithful to the blueprint's v1 formula:
     drift_score = 0.25*format + 0.20*instruction + 0.20*classification
                 + 0.15*math    + 0.10*extraction  + 0.10*refusal
     penalty: -5 if |verbosity_z| > 2,  -5 if latency_z > 2
-    alert if drift_score < baseline_avg - 15  OR  any category < 50
+    alert if drift_score < baseline_avg - 15  OR  any category < 50 that is
+    also 15+ below its own usual score (an always-weak category is not drift)
 
 Guardrails baked in:
 - API errors are excluded from pass rates (a failed call is NOT drift).
@@ -105,6 +106,19 @@ def _rolling_values(history: list[dict], key: str, baseline_days: int) -> list[f
     return out
 
 
+def _rolling_category(history: list[dict], category: str, baseline_days: int) -> list[float]:
+    cutoff = _now().timestamp() - baseline_days * 86400
+    out = []
+    for run in history:
+        if _dead(run):
+            continue
+        ts = _parse(run.get("run_at"))
+        v = (run.get("scores") or {}).get(category)
+        if (ts is None or ts.timestamp() >= cutoff) and isinstance(v, (int, float)):
+            out.append(float(v))
+    return out
+
+
 def _zscore(value: float, sample: list[float]) -> float:
     if len(sample) < 2:
         return 0.0
@@ -172,7 +186,16 @@ def score_run(
 
     collapse_threshold = scoring["category_collapse_threshold"]
     drop_threshold = scoring["drift_drop_threshold"]
-    collapsed = [c for c, v in pass_rates.items() if v < collapse_threshold]
+    # A category under the threshold is only a collapse if it is also well
+    # below that model's own usual score for it. A model that is always weak
+    # at, say, math is not drifting, and must not alert on every run.
+    collapsed = []
+    for c, v in pass_rates.items():
+        if v >= collapse_threshold:
+            continue
+        usual = _rolling_category(history, c, scoring["baseline_days"])
+        if not usual or v < statistics.mean(usual) - drop_threshold:
+            collapsed.append(c)
     score_dropped = (
         baseline_avg is not None and score < baseline_avg - drop_threshold
     )
