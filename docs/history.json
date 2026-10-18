@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-18T11:02:19+00:00",
+  "generated_at": "2026-10-18T16:04:17+00:00",
   "models": {
     "gemini-flash-lite (alias)": [
       {
@@ -7207,6 +7207,27 @@
         "breach": false,
         "baseline_avg": 94.0,
         "error_count": 0
+      },
+      {
+        "run_at": "2026-10-18T15:32:05+00:00",
+        "drift_score": 88.5,
+        "scores": {
+          "format_compliance": 100.0,
+          "instruction_following": 100.0,
+          "classification_stability": 80.0,
+          "math_reasoning": 50.0,
+          "extraction_accuracy": 100.0,
+          "refusal_boundary": 100.0,
+          "verbosity_fingerprint": 80.0,
+          "edge_case_handling": 100.0
+        },
+        "verbosity_z": -0.12,
+        "latency_ms_avg": 635.9,
+        "alerted": false,
+        "calibrating": false,
+        "breach": false,
+        "baseline_avg": 93.9,
+        "error_count": 4
       }
     ],
     "gemini-3.1-flash-lite (version)": [
@@ -14410,6 +14431,27 @@
         "breach": false,
         "baseline_avg": 98.9,
         "error_count": 0
+      },
+      {
+        "run_at": "2026-10-18T15:32:05+00:00",
+        "drift_score": 100.0,
+        "scores": {
+          "format_compliance": 100.0,
+          "instruction_following": 100.0,
+          "classification_stability": 100.0,
+          "math_reasoning": 100.0,
+          "extraction_accuracy": 100.0,
+          "refusal_boundary": 100.0,
+          "verbosity_fingerprint": 80.0,
+          "edge_case_handling": 100.0
+        },
+        "verbosity_z": 0.26,
+        "latency_ms_avg": 773.5,
+        "alerted": false,
+        "calibrating": false,
+        "breach": false,
+        "baseline_avg": 98.9,
+        "error_count": 4
       }
     ],
     "groq-gpt-oss-120b": [
@@ -20082,6 +20124,27 @@
         "breach": false,
         "baseline_avg": 99.2,
         "error_count": 0
+      },
+      {
+        "run_at": "2026-10-18T15:32:05+00:00",
+        "drift_score": 100.0,
+        "scores": {
+          "format_compliance": 100.0,
+          "instruction_following": 100.0,
+          "classification_stability": 100.0,
+          "math_reasoning": 100.0,
+          "extraction_accuracy": 100.0,
+          "refusal_boundary": 100.0,
+          "verbosity_fingerprint": 80.0,
+          "edge_case_handling": 100.0
+        },
+        "verbosity_z": 0.19,
+        "latency_ms_avg": 497.8,
+        "alerted": false,
+        "calibrating": false,
+        "breach": false,
+        "baseline_avg": 99.2,
+        "error_count": 0
       }
     ],
     "gemini-3.5-flash-lite": [
@@ -21528,6 +21591,27 @@
         "breach": false,
         "baseline_avg": 93.6,
         "error_count": 2
+      },
+      {
+        "run_at": "2026-10-18T15:32:05+00:00",
+        "drift_score": 93.0,
+        "scores": {
+          "format_compliance": 100.0,
+          "instruction_following": 100.0,
+          "classification_stability": 80.0,
+          "math_reasoning": 80.0,
+          "extraction_accuracy": 100.0,
+          "refusal_boundary": 100.0,
+          "verbosity_fingerprint": 80.0,
+          "edge_case_handling": 100.0
+        },
+        "verbosity_z": -0.59,
+        "latency_ms_avg": 560.3,
+        "alerted": false,
+        "calibrating": false,
+        "breach": false,
+        "baseline_avg": 93.5,
+        "error_count": 3
       }
     ],
     "gemma-4-26b": [
@@ -22971,6 +23055,27 @@
         },
         "verbosity_z": -0.03,
         "latency_ms_avg": 6941.4,
+        "alerted": false,
+        "calibrating": false,
+        "breach": false,
+        "baseline_avg": 99.3,
+        "error_count": 0
+      },
+      {
+        "run_at": "2026-10-18T15:32:05+00:00",
+        "drift_score": 100.0,
+        "scores": {
+          "format_compliance": 100.0,
+          "instruction_following": 100.0,
+          "classification_stability": 100.0,
+          "math_reasoning": 100.0,
+          "extraction_accuracy": 100.0,
+          "refusal_boundary": 100.0,
+          "verbosity_fingerprint": 80.0,
+          "edge_case_handling": 100.0
+        },
+        "verbosity_z": -0.03,
+        "latency_ms_avg": 6905.5,
         "alerted": false,
         "calibrating": false,
         "breach": false,
@@ -24427,6 +24532,27 @@
         "breach": false,
         "baseline_avg": 98.2,
         "error_count": 0
+      },
+      {
+        "run_at": "2026-10-18T15:32:05+00:00",
+        "drift_score": 97.0,
+        "scores": {
+          "format_compliance": 100.0,
+          "instruction_following": 100.0,
+          "classification_stability": 100.0,
+          "math_reasoning": 80.0,
+          "extraction_accuracy": 100.0,
+          "refusal_boundary": 100.0,
+          "verbosity_fingerprint": 80.0,
+          "edge_case_handling": 100.0
+        },
+        "verbosity_z": -0.16,
+        "latency_ms_avg": 599.2,
+        "alerted": false,
+        "calibrating": false,
+        "breach": false,
+        "baseline_avg": 98.2,
+        "error_count": 0
       }
     ],
     "groq-qwen3.8-27b": [
@@ -25873,6 +25999,27 @@
         },
         "verbosity_z": -0.11,
         "latency_ms_avg": 849.1,
+        "alerted": false,
+        "calibrating": false,
+        "breach": false,
+        "baseline_avg": 99.9,
+        "error_count": 0
+      },
+      {
+        "run_at": "2026-10-18T15:32:05+00:00",
+        "drift_score": 100.0,
+        "scores": {
+          "format_compliance": 100.0,
+          "instruction_following": 100.0,
+          "classification_stability": 100.0,
+          "math_reasoning": 100.0,
+          "extraction_accuracy": 100.0,
+          "refusal_boundary": 100.0,
+          "verbosity_fingerprint": 80.0,
+          "edge_case_handling": 100.0
+        },
+        "verbosity_z": -0.11,
+        "latency_ms_avg": 202.4,
         "alerted": false,
         "calibrating": false,
         "breach": false,
@@ -27779,6 +27926,27 @@
         "breach": false,
         "baseline_avg": 90.7,
         "error_count": 0
+      },
+      {
+        "run_at": "2026-10-18T15:32:05+00:00",
+        "drift_score": 91.0,
+        "scores": {
+          "format_compliance": 100.0,
+          "instruction_following": 100.0,
+          "classification_stability": 100.0,
+          "math_reasoning": 40.0,
+          "extraction_accuracy": 100.0,
+          "refusal_boundary": 100.0,
+          "verbosity_fingerprint": 80.0,
+          "edge_case_handling": 100.0
+        },
+        "verbosity_z": -1.46,
+        "latency_ms_avg": 1235.9,
+        "alerted": false,
+        "calibrating": false,
+        "breach": false,
+        "baseline_avg": 90.7,
+        "error_count": 0
       }
     ],
     "cloudflare-llama-4-scout": [
@@ -29225,6 +29393,27 @@
         },
         "verbosity_z": 0.44,
         "latency_ms_avg": 1128.5,
+        "alerted": false,
+        "calibrating": false,
+        "breach": false,
+        "baseline_avg": 88.8,
+        "error_count": 0
+      },
+      {
+        "run_at": "2026-10-18T15:32:05+00:00",
+        "drift_score": 89.5,
+        "scores": {
+          "format_compliance": 80.0,
+          "instruction_following": 100.0,
+          "classification_stability": 100.0,
+          "math_reasoning": 80.0,
+          "extraction_accuracy": 75.0,
+          "refusal_boundary": 100.0,
+          "verbosity_fingerprint": 80.0,
+          "edge_case_handling": 100.0
+        },
+        "verbosity_z": 0.38,
+        "latency_ms_avg": 1731.2,
         "alerted": false,
         "calibrating": false,
         "breach": false,
@@ -30681,6 +30870,27 @@
         "breach": false,
         "baseline_avg": 72.6,
         "error_count": 0
+      },
+      {
+        "run_at": "2026-10-18T15:32:05+00:00",
+        "drift_score": 73.5,
+        "scores": {
+          "format_compliance": 100.0,
+          "instruction_following": 80.0,
+          "classification_stability": 60.0,
+          "math_reasoning": 20.0,
+          "extraction_accuracy": 100.0,
+          "refusal_boundary": 75.0,
+          "verbosity_fingerprint": 40.0,
+          "edge_case_handling": 80.0
+        },
+        "verbosity_z": 0.32,
+        "latency_ms_avg": 1578.2,
+        "alerted": false,
+        "calibrating": false,
+        "breach": false,
+        "baseline_avg": 72.8,
+        "error_count": 0
       }
     ],
     "cloudflare-mistral-small-3.1-24b": [
@@ -32127,6 +32337,27 @@
         },
         "verbosity_z": 0.11,
         "latency_ms_avg": 1063.6,
+        "alerted": false,
+        "calibrating": false,
+        "breach": false,
+        "baseline_avg": 84.5,
+        "error_count": 0
+      },
+      {
+        "run_at": "2026-10-18T15:32:05+00:00",
+        "drift_score": 85.0,
+        "scores": {
+          "format_compliance": 80.0,
+          "instruction_following": 100.0,
+          "classification_stability": 80.0,
+          "math_reasoning": 60.0,
+          "extraction_accuracy": 100.0,
+          "refusal_boundary": 100.0,
+          "verbosity_fingerprint": 80.0,
+          "edge_case_handling": 100.0
+        },
+        "verbosity_z": 0.32,
+        "latency_ms_avg": 1033.7,
         "alerted": false,
         "calibrating": false,
         "breach": false,
@@ -33583,6 +33814,27 @@
         "breach": false,
         "baseline_avg": 97.6,
         "error_count": 0
+      },
+      {
+        "run_at": "2026-10-18T15:32:05+00:00",
+        "drift_score": 100.0,
+        "scores": {
+          "format_compliance": 100.0,
+          "instruction_following": 100.0,
+          "classification_stability": 100.0,
+          "math_reasoning": 100.0,
+          "extraction_accuracy": 100.0,
+          "refusal_boundary": 100.0,
+          "verbosity_fingerprint": 80.0,
+          "edge_case_handling": 100.0
+        },
+        "verbosity_z": -1.89,
+        "latency_ms_avg": 10190.9,
+        "alerted": false,
+        "calibrating": false,
+        "breach": false,
+        "baseline_avg": 97.5,
+        "error_count": 0
       }
     ],
     "cloudflare-qwen3-30b": [
@@ -35029,6 +35281,27 @@
         },
         "verbosity_z": 1.22,
         "latency_ms_avg": 2707.7,
+        "alerted": false,
+        "calibrating": false,
+        "breach": false,
+        "baseline_avg": 98.8,
+        "error_count": 0
+      },
+      {
+        "run_at": "2026-10-18T15:32:05+00:00",
+        "drift_score": 100.0,
+        "scores": {
+          "format_compliance": 100.0,
+          "instruction_following": 100.0,
+          "classification_stability": 100.0,
+          "math_reasoning": 100.0,
+          "extraction_accuracy": 100.0,
+          "refusal_boundary": 100.0,
+          "verbosity_fingerprint": 60.0,
+          "edge_case_handling": 100.0
+        },
+        "verbosity_z": -0.09,
+        "latency_ms_avg": 2764.3,
         "alerted": false,
         "calibrating": false,
         "breach": false,
