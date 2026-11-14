@@ -1,5 +1,5 @@
 {
-  "probed_at": "2026-09-27T05:08:18Z",
+  "probed_at": "2026-11-14T20:05:28Z",
   "groq": {
     "models": [
       {
@@ -50,7 +50,7 @@
         "max_completion_tokens": 65536,
         "ok": true,
         "reply": "OK",
-        "ms": 341
+        "ms": 583
       },
       {
         "id": "openai/gpt-oss-20b",
@@ -60,7 +60,7 @@
         "max_completion_tokens": 65536,
         "ok": true,
         "reply": "OK",
-        "ms": 202
+        "ms": 342
       },
       {
         "id": "openai/gpt-oss-safeguard-20b",
@@ -78,7 +78,7 @@
         "max_completion_tokens": 16384,
         "ok": true,
         "reply": "OK",
-        "ms": 141
+        "ms": 335
       },
       {
         "id": "whisper-large-v3",
@@ -303,7 +303,81 @@
         "deprecated": null,
         "ok": true,
         "reply": "OK\n",
-        "ms": 362
+        "ms": 183
+      },
+      {
+        "id": "@cf/cloudflare/clairic",
+        "context_window": "65536",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.1,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": false,
+        "error": "HTTP 400: {\"errors\":[{\"message\":\"AiError: Bad input: Error: required properties at '/' are 'model,fields' (ee762fff-c044-4d53-80bf-bbbcff6d3f06)\",\"code\":5006}],\"success\":false,\"result\":{},\"messages\":[]}",
+        "ms": 76
+      },
+      {
+        "id": "@cf/cloudflare/clef",
+        "context_window": "65536",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.24,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": false,
+        "error": "HTTP 400: {\"errors\":[{\"message\":\"AiError: Bad input: Error: required properties at '/' are 'model,state,questions' (63010348-0752-432e-9606-1cebfa8e11c2)\",\"code\":5006}],\"success\":false,\"result\":{},\"messages\":[]}",
+        "ms": 70
+      },
+      {
+        "id": "@cf/cloudflare/clef-flash",
+        "context_window": "24576",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.038,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": false,
+        "error": "HTTP 400: {\"errors\":[{\"message\":\"AiError: Bad input: Error: required properties at '/' are 'model,state,questions' (f542a128-8955-4c41-9b84-946b6430b671)\",\"code\":5006}],\"success\":false,\"result\":{},\"messages\":[]}",
+        "ms": 65
+      },
+      {
+        "id": "@cf/cloudflare/clef-omni",
+        "context_window": "65536",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.15,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": false,
+        "error": "HTTP 400: {\"errors\":[{\"message\":\"AiError: Bad input: Error: required properties at '/' are 'model,state,questions' (9ba5d64d-276c-4af2-b031-f95241b14111)\",\"code\":5006}],\"success\":false,\"result\":{},\"messages\":[]}",
+        "ms": 93
+      },
+      {
+        "id": "@cf/daily-co/phonellm-mini-alpha-2",
+        "context_window": "262140",
+        "price": null,
+        "beta": null,
+        "deprecated": null,
+        "ok": true,
+        "reply": "OK",
+        "ms": 166
       },
       {
         "id": "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
@@ -321,14 +395,14 @@
           }
         ],
         "beta": null,
-        "deprecated": null,
+        "deprecated": "2026-11-20",
         "ok": true,
-        "reply": "<think>\nOkay, so I'm trying to figure out how to create a simple calculator usin",
-        "ms": 2868
+        "reply": "<think>\nOkay, so I have this task where the user says, \"You are a helpful assist",
+        "ms": 1818
       },
       {
         "id": "@cf/deepseek-ai/deepseek-v4-flash-0731",
-        "context_window": "1310720",
+        "context_window": "1048576",
         "price": [
           {
             "unit": "per M input tokens",
@@ -347,10 +421,10 @@
           }
         ],
         "beta": null,
-        "deprecated": null,
+        "deprecated": "2026-11-20",
         "ok": false,
-        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/deepseek-ai/deepseek-v4-flash-0731 is not available on the Workers Free plan: Model @cf/deepseek-ai/deepseek-v4-flash-0731 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (e7813",
-        "ms": 133
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/deepseek-ai/deepseek-v4-flash-0731 is not available on the Workers Free plan: Model @cf/deepseek-ai/deepseek-v4-flash-0731 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (5addf",
+        "ms": 172
       },
       {
         "id": "@cf/deepseek-ai/deepseek-v4-pro-0813",
@@ -373,20 +447,46 @@
           }
         ],
         "beta": null,
+        "deprecated": "2026-11-20",
+        "ok": false,
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/deepseek-ai/deepseek-v4-pro-0813 is not available on the Workers Free plan: Model @cf/deepseek-ai/deepseek-v4-pro-0813 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (ed248aee-",
+        "ms": 75
+      },
+      {
+        "id": "@cf/deepseek-ai/deepseek-v4.1-flash-1017",
+        "context_window": "1048576",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.3,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 1.2,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M cached input tokens",
+            "price": 0.006,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
         "deprecated": null,
         "ok": false,
-        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/deepseek-ai/deepseek-v4-pro-0813 is not available on the Workers Free plan: Model @cf/deepseek-ai/deepseek-v4-pro-0813 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (11707174-",
-        "ms": 144
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/deepseek-ai/deepseek-v4.1-flash-1017 is not available on the Workers Free plan: Model @cf/deepseek-ai/deepseek-v4.1-flash-1017 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (f",
+        "ms": 497
       },
       {
         "id": "@cf/google/gemma-2b-it-lora",
         "context_window": "8192",
         "price": null,
         "beta": "true",
-        "deprecated": null,
+        "deprecated": "2026-11-20",
         "ok": true,
         "reply": "OK, I am ready to assist you with any questions or tasks you may have. How can I",
-        "ms": 936
+        "ms": 896
       },
       {
         "id": "@cf/google/gemma-4-26b-a4b-it",
@@ -401,54 +501,48 @@
             "unit": "per M output tokens",
             "price": 0.3,
             "currency": "USD"
+          },
+          {
+            "unit": "per M cached input tokens",
+            "price": 0.05,
+            "currency": "USD"
           }
         ],
         "beta": null,
         "deprecated": null,
         "ok": true,
         "reply": "",
-        "ms": 519
+        "ms": 1600
       },
       {
         "id": "@cf/google/gemma-7b-it-lora",
         "context_window": "3500",
         "price": null,
         "beta": "true",
-        "deprecated": null,
+        "deprecated": "2026-11-20",
         "ok": true,
         "reply": "OK\n\nSure, I have replied with \"OK.\" Please let me know if you have any further r",
-        "ms": 2149
+        "ms": 2101
       },
       {
         "id": "@cf/ibm-granite/granite-4.0-h-micro",
         "context_window": "131000",
-        "price": [
-          {
-            "unit": "per M input tokens",
-            "price": 0.017,
-            "currency": "USD"
-          },
-          {
-            "unit": "per M output tokens",
-            "price": 0.112,
-            "currency": "USD"
-          }
-        ],
+        "price": null,
         "beta": null,
         "deprecated": null,
         "ok": true,
         "reply": "OK",
-        "ms": 397
+        "ms": 676
       },
       {
         "id": "@cf/meta-llama/llama-2-7b-chat-hf-lora",
         "context_window": "8192",
         "price": null,
         "beta": "true",
-        "deprecated": null,
+        "deprecated": "2026-11-20",
         "ok": true,
         "reply": "",
-        "ms": 4223
+        "ms": 4121
       },
       {
         "id": "@cf/meta/llama-3.1-8b-instruct-fp8",
@@ -466,10 +560,10 @@
           }
         ],
         "beta": null,
-        "deprecated": null,
+        "deprecated": "2026-11-20",
         "ok": true,
         "reply": "OK",
-        "ms": 350
+        "ms": 935
       },
       {
         "id": "@cf/meta/llama-3.2-11b-vision-instruct",
@@ -490,7 +584,7 @@
         "deprecated": null,
         "ok": false,
         "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model Agreement: Prior to using this model, you must submit the prompt 'agree'. By submitting \u2018agree\u2019, you  hereby agree to the llama-3.2-11b-vision-instruct Community License https://github.com/meta-llama/llama-models/blob/main/models/llama3_2/LICENSE and Acceptable ",
-        "ms": 265
+        "ms": 591
       },
       {
         "id": "@cf/meta/llama-3.2-1b-instruct",
@@ -508,10 +602,10 @@
           }
         ],
         "beta": null,
-        "deprecated": null,
+        "deprecated": "2026-11-20",
         "ok": true,
         "reply": "OK",
-        "ms": 279
+        "ms": 221
       },
       {
         "id": "@cf/meta/llama-3.2-3b-instruct",
@@ -529,10 +623,10 @@
           }
         ],
         "beta": null,
-        "deprecated": null,
+        "deprecated": "2026-11-20",
         "ok": true,
         "reply": "OK",
-        "ms": 238
+        "ms": 202
       },
       {
         "id": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
@@ -553,7 +647,7 @@
         "deprecated": null,
         "ok": true,
         "reply": "OK",
-        "ms": 406
+        "ms": 262
       },
       {
         "id": "@cf/meta/llama-4-scout-17b-16e-instruct",
@@ -574,7 +668,7 @@
         "deprecated": null,
         "ok": true,
         "reply": "OK",
-        "ms": 479
+        "ms": 257
       },
       {
         "id": "@cf/meta/llama-guard-3-8b",
@@ -603,7 +697,7 @@
         "deprecated": null,
         "ok": true,
         "reply": " OK. I'm here to help answer any questions you might have or provide information",
-        "ms": 4007
+        "ms": 3813
       },
       {
         "id": "@cf/mistralai/mistral-small-3.1-24b-instruct",
@@ -624,7 +718,7 @@
         "deprecated": null,
         "ok": true,
         "reply": "OK",
-        "ms": 482
+        "ms": 334
       },
       {
         "id": "@cf/moonshotai/kimi-k2.6",
@@ -647,10 +741,10 @@
           }
         ],
         "beta": null,
-        "deprecated": null,
+        "deprecated": "2026-11-20",
         "ok": false,
-        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/moonshotai/kimi-k2.6 is not available on the Workers Free plan: Model @cf/moonshotai/kimi-k2.6 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (ef606a64-b16c-4d1b-80eb-dc0a797b6",
-        "ms": 102
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/moonshotai/kimi-k2.6 is not available on the Workers Free plan: Model @cf/moonshotai/kimi-k2.6 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (00758665-416b-4067-acc2-36d10ff5c",
+        "ms": 71
       },
       {
         "id": "@cf/moonshotai/kimi-k2.7-code",
@@ -673,10 +767,10 @@
           }
         ],
         "beta": null,
-        "deprecated": null,
+        "deprecated": "2026-11-20",
         "ok": false,
-        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/moonshotai/kimi-k2.7-code is not available on the Workers Free plan: Model @cf/moonshotai/kimi-k2.7-code is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (f8d0e823-36ef-4411-b3f3",
-        "ms": 143
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/moonshotai/kimi-k2.7-code is not available on the Workers Free plan: Model @cf/moonshotai/kimi-k2.7-code is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (e82d36b8-0161-45aa-a067",
+        "ms": 126
       },
       {
         "id": "@cf/nvidia/nemotron-3-120b-a12b",
@@ -694,10 +788,10 @@
           }
         ],
         "beta": null,
-        "deprecated": null,
+        "deprecated": "2026-11-20",
         "ok": true,
         "reply": "\n\nOK",
-        "ms": 772
+        "ms": 652
       },
       {
         "id": "@cf/openai/gpt-oss-120b",
@@ -718,7 +812,7 @@
         "deprecated": null,
         "ok": true,
         "reply": "OK",
-        "ms": 1027
+        "ms": 2791
       },
       {
         "id": "@cf/openai/gpt-oss-20b",
@@ -739,7 +833,7 @@
         "deprecated": null,
         "ok": true,
         "reply": "OK",
-        "ms": 507
+        "ms": 473
       },
       {
         "id": "@cf/qwen/qwen2.5-coder-32b-instruct",
@@ -760,7 +854,7 @@
         "deprecated": null,
         "ok": true,
         "reply": "OK",
-        "ms": 498
+        "ms": 183
       },
       {
         "id": "@cf/qwen/qwen3-30b-a3b-fp8",
@@ -778,10 +872,10 @@
           }
         ],
         "beta": null,
-        "deprecated": null,
+        "deprecated": "2026-11-20",
         "ok": true,
         "reply": "",
-        "ms": 576
+        "ms": 522
       },
       {
         "id": "@cf/qwen/qwen3.8-27b",
@@ -807,7 +901,7 @@
         "deprecated": null,
         "ok": true,
         "reply": "\n\nOK",
-        "ms": 916
+        "ms": 823
       },
       {
         "id": "@cf/qwen/qwq-32b",
@@ -825,10 +919,56 @@
           }
         ],
         "beta": null,
-        "deprecated": null,
+        "deprecated": "2026-11-20",
         "ok": true,
         "reply": "Okay, the user wants me to reply with exactly \"OK\". Let me make sure I understan",
-        "ms": 2132
+        "ms": 2012
+      },
+      {
+        "id": "@cf/swiss-ai/apertus-v1.5-8b",
+        "context_window": "262144",
+        "price": null,
+        "beta": null,
+        "deprecated": null,
+        "ok": false,
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Ai: This account is not allowed to access @cf/swiss-ai/apertus-v1.5-8b. (f733e408-6429-40a7-9a28-ab12adbe6bae)\",\"code\":5018}],\"success\":false,\"result\":{},\"messages\":[]}",
+        "ms": 101
+      },
+      {
+        "id": "@cf/thinkingmachines/inkling-2-small",
+        "context_window": "1048576",
+        "price": [
+          {
+            "unit": "per M input tokens",
+            "price": 0.3,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M output tokens",
+            "price": 1,
+            "currency": "USD"
+          },
+          {
+            "unit": "per M cached input tokens",
+            "price": 0.1,
+            "currency": "USD"
+          }
+        ],
+        "beta": null,
+        "deprecated": null,
+        "ok": false,
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/thinkingmachines/inkling-2-small is not available on the Workers Free plan: Model @cf/thinkingmachines/inkling-2-small is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (d30981f7-",
+        "ms": 98
+      },
+      {
+        "id": "@cf/utter-project/eurollm-9b-it",
+        "context_window": "32000",
+        "price": null,
+        "beta": null,
+        "deprecated": null,
+        "ok": false,
+        "error": "HTTP 400: {\"errors\":[{\"message\":\"AiError: AiError: AI model does not have config (aac38b68-3031-4426-b586-3633b8cf6f55)\",\"code\":4003}],\"success\":false,\"result\":{},\"messages\":[]}",
+        "ms": 212
       },
       {
         "id": "@cf/zai-org/glm-4.7-flash",
@@ -849,7 +989,7 @@
         "deprecated": null,
         "ok": true,
         "reply": "OK",
-        "ms": 988
+        "ms": 1040
       },
       {
         "id": "@cf/zai-org/glm-5.2",
@@ -872,14 +1012,14 @@
           }
         ],
         "beta": null,
-        "deprecated": null,
+        "deprecated": "2026-11-20",
         "ok": false,
-        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/zai-org/glm-5.2 is not available on the Workers Free plan: Model @cf/zai-org/glm-5.2 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (6865f358-80f3-42f3-9fcd-431357bdcb53)\",\"cod",
-        "ms": 169
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/zai-org/glm-5.2 is not available on the Workers Free plan: Model @cf/zai-org/glm-5.2 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (28e986c0-0c9c-43a6-8ec0-0d86dd2db0f1)\",\"cod",
+        "ms": 106
       },
       {
         "id": "@cf/zai-org/glm-5.3",
-        "context_window": "1310720",
+        "context_window": "1048576",
         "price": [
           {
             "unit": "per M input tokens",
@@ -900,12 +1040,12 @@
         "beta": null,
         "deprecated": null,
         "ok": false,
-        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/zai-org/glm-5.3 is not available on the Workers Free plan: Model @cf/zai-org/glm-5.3 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (72263733-25d0-4abb-9ef1-d4765a71054b)\",\"cod",
-        "ms": 96
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/zai-org/glm-5.3 is not available on the Workers Free plan: Model @cf/zai-org/glm-5.3 is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (f036fee5-670a-44fe-be10-74eb184bcf11)\",\"cod",
+        "ms": 62
       },
       {
         "id": "@cf/zai-org/glm-5.3-flash",
-        "context_window": "1310720",
+        "context_window": "1048576",
         "price": [
           {
             "unit": "per M input tokens",
@@ -924,10 +1064,10 @@
           }
         ],
         "beta": null,
-        "deprecated": null,
+        "deprecated": "2026-11-20",
         "ok": false,
-        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/zai-org/glm-5.3-flash is not available on the Workers Free plan: Model @cf/zai-org/glm-5.3-flash is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (55d2203c-3257-489e-9f70-daf66b5",
-        "ms": 101
+        "error": "HTTP 403: {\"errors\":[{\"message\":\"AiError: Model @cf/zai-org/glm-5.3-flash is not available on the Workers Free plan: Model @cf/zai-org/glm-5.3-flash is not available on the Workers Free plan. Upgrade to access this model: https://dash.cloudflare.com/?to=/:account/workers/plans (963ad315-6e93-4ddd-9510-4ba2175",
+        "ms": 70
       }
     ]
   }
